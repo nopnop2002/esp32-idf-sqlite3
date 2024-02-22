@@ -11,6 +11,7 @@ ESP-IDF V5.0 is required when using ESP32-C2.
 ESP-IDF V5.1 is required when using ESP32-C6.   
 
 # Changes from the original   
+- Change to local component   
 - Disable compile warnings   
 - Supports PSRAM   
 - Added FATFS example   
