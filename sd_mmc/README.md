@@ -38,7 +38,6 @@ Click [here](https://github.com/espressif/esp-idf/tree/master/examples/storage/s
 |3.3V|VCC|Don't use 5V supply|
 |GND|GND||
 
-
 ![config-top](https://github.com/nopnop2002/esp32-idf-sqlite3/assets/6020549/996ee316-12df-41fc-931f-b0b5a1fd9480)
 ![config-esp32-1](https://github.com/nopnop2002/esp32-idf-sqlite3/assets/6020549/b27dba7a-2bfb-4e6b-8d8c-41ca2d22319d)
 ![config-esp32-2](https://github.com/nopnop2002/esp32-idf-sqlite3/assets/6020549/10f07203-0ef7-487c-bc65-1d98305644bc)
