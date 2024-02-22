@@ -29,7 +29,7 @@ Enable PARAM using Menuconfig.
 ![psram-esp32](https://github.com/nopnop2002/esp32-idf-sqlite3/assets/6020549/603cd530-7424-4da6-b395-e0be6de1d6a8)
 
 
-ESP32S3 can now use two types: Quad Mode PSRAM and Octal Mode PSRAM.    
+ESP32-S3 can now use two types: Quad Mode PSRAM and Octal Mode PSRAM.    
 Please check the ESP32-S3 data sheet to determine which type of PSRAM your ESP32S3 has.   
 ![psram-esp32s3-Quad](https://github.com/nopnop2002/esp32-idf-sqlite3/assets/6020549/ed0533e0-0128-46e1-9ce1-7ffe3515b386)
 ![psram-esp32s3-Octal](https://github.com/nopnop2002/esp32-idf-sqlite3/assets/6020549/2ca3cfda-7128-49b9-be2d-bd7c9127488c)
