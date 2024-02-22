@@ -22,6 +22,8 @@ SD card reader with SPI connection.
 ![config-app](https://github.com/nopnop2002/esp32-idf-sqlite3/assets/6020549/5396f067-f2b2-44ae-8c06-ae79cf5ca2e7)
 
 # Wireing
+Click [here](https://github.com/espressif/esp-idf/tree/master/examples/storage/sd_card/sdspi) for details.   
+
 |ESP32|ESP32S2/S3|ESP32C2/C3/C6|SPI card pin|Notes|
 |:-:|:-:|:-:|:-:|:--|
 |GPIO15|GPIO35|GPIO04|MOSI|10k pullup if can't mount|
