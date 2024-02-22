@@ -4,6 +4,7 @@ Uses the SDSPI peripheral on ESP32 to retrieve from SQLite databases.
 
 # Changes from the original   
 - Supports SoC with 2MB flash like ESP32-C series   
+- Supports Long file mame   
 
 # Installation
 After formatting the SD card to FAT32, copy all files in the data folder.   
