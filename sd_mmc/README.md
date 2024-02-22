@@ -22,7 +22,7 @@ SD card reader with MMC connection.
 On ESP32, SDMMC peripheral is connected to specific GPIO pins using the IO MUX.   
 __GPIO pins cannot be customized.__   
 GPIO2 and GPIO12 cannot be changed.   
-So using 4-line SD mode with ESP32 is very tricky.   
+Since these GPIOs are BootStrap, it is very tricky to use 4-line SD mode with ESP32.   
 Click [here](https://github.com/espressif/esp-idf/tree/master/examples/storage/sd_card/sdspi) for details.
 
 |ESP32 pin|SD card pin|Notes|
