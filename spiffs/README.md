@@ -11,3 +11,5 @@ cd esp-idf-sqlite3/spiffs
 idf.py menuconfig
 idf.py flash monitor
 ```
+
+There is no MENU ITEM where this application is peculiar.
