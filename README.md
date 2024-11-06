@@ -6,9 +6,8 @@ Therefore, We changed it so that it can also be used with ESP-IDF Ver5.
 At the same time, we also changed the sample code so that it can be used with ESP-IDF Ver5.   
 
 # Software requirements   
-ESP-IDF V4.4/V5.x.   
-ESP-IDF V5.0 is required when using ESP32-C2.   
-ESP-IDF V5.1 is required when using ESP32-C6.   
+ESP-IDF V5.0 or later.   
+ESP-IDF V4.4 release branch reached EOL in July 2024.   
 
 # Changes from the original   
 - Change to local component   
