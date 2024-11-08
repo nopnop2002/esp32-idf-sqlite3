@@ -17,10 +17,36 @@ ESP-IDF V4.4 release branch reached EOL in July 2024.
 
 # Installation
 ```
-git clone https://github.com/nopnop2002/esp32-idf-sqlite3
-cd esp-idf-sqlite3/spiffs
-idf.py menuconfig
-idf.py flash monitor
+Use the Windows Command Prompt to perform the followings (assume your device is an esp32-s3 development module):
+1) Clone sqlite3 with the command below:
+      git clone https://github.com/nopnop2002/esp32-idf-sqlite3
+  For Windows OS, this will create a folder and its subfolders in:
+      <your_IDF_PATH>/esp32-idf-sqlite3
+2) You need to move the newly created 'esp32-idf-sqlite3' folder and all its subfolders
+      from: <your_IDF_PATH>/esp32-idf-sqlite3
+      to  : <your_IDF_PATH>/components/esp32-idf-sqlite3
+   Otherwise, subsequent test programs will not compile properly.
+   This is because the 'CMakeLists.txt' file for the 'spiffs' test program was set to:
+      set(EXTRA_COMPONENT_DIRS ../components/esp32-idf-sqlite3)
+ 
+3) Change your current folder:
+      cd <your_IDF_PATH>/components/esp32-idf-sqlite3/spiffs
+4) Set target to your device:
+      idf.py set-target esp32-s3
+5) Run 'menuconfig'
+      idf.py menuconfig
+6) Set parameters for your device (eg. esp32-s3):
+    a) At the 'Serial Flasher Config' menu,
+        - unselect the option: 'Choose flash mode automatically'
+        - enter 'Flash SPI mode' and select: 'QIO'
+        - enter 'Flash sampling mode' and select: 'STR mode'
+        - enter 'Flash SPI speed' and select: '80 MHz'
+        - enter 'Flash size' and select: '16 MB'
+    b) Hit [s] key to save the configuration
+    c) Hit [Esc] to return to main menu
+    d) Hit [q] key to quit menuconfig
+7) Flash and run the 'spiffs' test program
+      idf.py flash monitor
 ```
 
 # Using PSRAM   
