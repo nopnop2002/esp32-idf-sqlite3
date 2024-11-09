@@ -14,3 +14,8 @@ idf.py flash monitor
 ```
 
 There is no MENU ITEM where this application is peculiar.
+
+
+# Partition size
+Please change ```partitions.csv``` according to your environment.   
+
