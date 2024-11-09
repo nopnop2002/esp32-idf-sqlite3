@@ -35,7 +35,7 @@ Please check the ESP32-S3 data sheet to determine which type of PSRAM your ESP32
 
 
 sqlite uses CONFIG_SPIRAM to determine whether PSRAM is enabled or disabled.   
-If PSRAM is enabled, use ps_mallo()/ps_realloc() instead of malloc()/realloc().   
+If PSRAM is enabled, use ps_malloc()/ps_realloc() instead of malloc()/realloc().   
 ```
 #if CONFIG_SPIRAM
 #define SQLITE_MALLOC(x) ps_malloc(x)
