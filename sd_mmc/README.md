@@ -10,7 +10,7 @@ Uses the SDMMC peripheral on ESP32 to retrieve from SQLite databases.
 # Installation
 ```
 git clone https://github.com/nopnop2002/esp32-idf-sqlite3
-cd esp-idf-sqlite3/sd_mmc
+cd esp32-idf-sqlite3/sd_mmc
 idf.py menuconfig
 idf.py flash monitor
 ```
