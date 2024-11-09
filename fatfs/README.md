@@ -17,5 +17,6 @@ There is no MENU ITEM where this application is peculiar.
 
 
 # Partition size
-Please change ```partitions.csv``` according to your environment.   
+To support the ESP32-C series, this project uses a partition of 0xF0000 (=960K) by default.   
+If your ESP32 has more than 4M Flash, you can change ```partitions.csv```.   
 
