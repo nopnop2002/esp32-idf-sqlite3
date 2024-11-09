@@ -1,5 +1,5 @@
 /*
-	This example creates two databases on SPIFFS,
+	This example creates two databases on FATFS,
 	inserts and retrieves data from them.
 */
 #include <stdio.h>
