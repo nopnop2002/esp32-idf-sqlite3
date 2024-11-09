@@ -7,7 +7,7 @@ Creates two Sqlite3 databases on SPIFFS, inserts and retrieves data from them.
 # Installation
 ```
 git clone https://github.com/nopnop2002/esp32-idf-sqlite3
-cd esp-idf-sqlite3/spiffs
+cd esp32-idf-sqlite3/spiffs
 idf.py menuconfig
 idf.py flash monitor
 ```
