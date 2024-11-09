@@ -8,7 +8,7 @@ Creates two Sqlite3 databases on FATFS, inserts and retrieves data from them.
 # Installation
 ```
 git clone https://github.com/nopnop2002/esp32-idf-sqlite3
-cd esp-idf-sqlite3/fatfs
+cd esp32-idf-sqlite3/fatfs
 idf.py menuconfig
 idf.py flash monitor
 ```
