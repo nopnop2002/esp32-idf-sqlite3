@@ -10,7 +10,7 @@ Uses the SDSPI peripheral on ESP32 to retrieve from SQLite databases.
 After formatting the SD card to FAT32, copy all files in the data folder.   
 ```
 git clone https://github.com/nopnop2002/esp32-idf-sqlite3
-cd esp-idf-sqlite3/sd_spi
+cd esp32-idf-sqlite3/sd_spi
 idf.py menuconfig
 idf.py flash monitor
 ```
