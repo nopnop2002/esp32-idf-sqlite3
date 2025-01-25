@@ -8,6 +8,7 @@ Uses the SDMMC peripheral on ESP32 to retrieve from SQLite databases.
 - Supports 1Line bus width   
 
 # Installation
+You need to copy all the files in the data folder to the sd card.   
 ```
 git clone https://github.com/nopnop2002/esp32-idf-sqlite3
 cd esp32-idf-sqlite3/sd_mmc
