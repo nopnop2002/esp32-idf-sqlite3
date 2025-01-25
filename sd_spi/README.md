@@ -26,9 +26,9 @@ Click [here](https://github.com/espressif/esp-idf/tree/master/examples/storage/s
 
 |ESP32|ESP32S2/S3|ESP32C2/C3/C6|SPI card pin|Notes|
 |:-:|:-:|:-:|:-:|:--|
-|GPIO15|GPIO35|GPIO04|MOSI|10k pullup if can't mount|
-|GPIO12|GPIO37|GPIO06|MISO||
-|GPIO14|GPIO36|GPIO05|SCK||
-|GPIO13|GPIO34|GPIO01|CS|||
+|GPIO23|GPIO35|GPIO04|MOSI|10k pullup if can't mount|
+|GPIO19|GPIO37|GPIO06|MISO||
+|GPIO18|GPIO36|GPIO05|SCK||
+|GPIO5|GPIO34|GPIO01|CS|||
 |3.3V|3.3V|3.3V|VCC|Don't use 5V supply|
 |GND|GND|GND|GND||
