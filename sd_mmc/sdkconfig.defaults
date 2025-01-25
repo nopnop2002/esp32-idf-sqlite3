@@ -1,7 +1,4 @@
-#
-# FAT Filesystem support
+# This file was generated using idf.py save-defconfig. It can be edited manually.
+# Espressif IoT Development Framework (ESP-IDF) 5.3.2 Project Minimal Configuration
 #
 CONFIG_FATFS_LFN_HEAP=y
-CONFIG_FATFS_MAX_LFN=255
-CONFIG_FATFS_API_ENCODING_ANSI_OEM=y
-
