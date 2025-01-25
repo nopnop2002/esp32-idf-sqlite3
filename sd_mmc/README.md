@@ -1,6 +1,6 @@
 # Sqlite3 SDMMC example
 
-Uses the SDMMC peripheral on ESP32 to retrieve from SQLite databases.
+Uses the SDMMC peripheral on ESP32/ESP32S3 to retrieve from SQLite databases.
 
 # Changes from the original   
 - Supports ESP32-S3   
