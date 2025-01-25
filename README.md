@@ -15,6 +15,7 @@ ESP-IDF V4.4 release branch reached EOL in July 2024.
 - Supports PSRAM   
 - Added fatfs example   
 - Added littlefs example   
+- Moved sqllib.c and sqllib.h to components
 
 # Installation
 ```
