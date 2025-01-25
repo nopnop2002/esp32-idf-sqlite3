@@ -19,7 +19,7 @@ SD card reader with SPI connection.
 
 # Configuration
 ![config-top](https://github.com/nopnop2002/esp32-idf-sqlite3/assets/6020549/d6287f8e-c552-4aad-bb52-e625a3a1c455)
-![config-app](https://github.com/nopnop2002/esp32-idf-sqlite3/assets/6020549/5396f067-f2b2-44ae-8c06-ae79cf5ca2e7)
+![Image](https://github.com/user-attachments/assets/269cd575-992f-4380-9e15-ac7e9f0eb255)
 
 # Wireing
 Click [here](https://github.com/espressif/esp-idf/tree/master/examples/storage/sd_card/sdspi) for details.   
