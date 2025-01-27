@@ -34,7 +34,7 @@ I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't
 
 
 - Connect tcp server   
- Specify the IP address and port number of the ESP32.
+ Specify the IP address and port number of the ESP32.   
 ![Image](https://github.com/user-attachments/assets/04472473-3afa-435a-8450-1636f5a7aaf9)   
 ![Image](https://github.com/user-attachments/assets/11b02618-96fe-40f3-8864-cee05e6bcc99)   
  Some applications allow you to connect using an mDNS hostname.
