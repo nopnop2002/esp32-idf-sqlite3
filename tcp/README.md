@@ -30,6 +30,9 @@ There are several TCP-Clients available that run on Windows.
 [Hercules](https://www.hw-group.com/software/hercules-setup-utility)   
 [SocketTest](https://sourceforge.net/projects/sockettest/)   
 
+I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't find one.   
+
+
 - Connect tcp server   
  Specify the IP address and port number of the ESP32.
 ![Image](https://github.com/user-attachments/assets/04472473-3afa-435a-8450-1636f5a7aaf9)   
