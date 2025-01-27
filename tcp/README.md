@@ -1,4 +1,4 @@
-# Sqlite3 TCP example
+# Sqlite3 Over TCP
 This is a demo of using sqlite3 over TCP.   
 This project requires a WiFi connection.   
 
