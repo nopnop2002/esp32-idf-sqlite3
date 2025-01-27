@@ -74,7 +74,7 @@ Type "delete from test1 where id = 1;" and send.
 - Error notification   
 ![Image](https://github.com/user-attachments/assets/ed368dc7-d996-41c0-9b9e-17dbb2fbad1c)
 
-- Close database
+- Close database   
 Press the Disconnect button.   
 ![Image](https://github.com/user-attachments/assets/ebbc75fb-2c3d-417c-a64b-244852abf9e2)
 ![Image](https://github.com/user-attachments/assets/a91cd953-1ef2-43d8-9130-747135390a9a)
