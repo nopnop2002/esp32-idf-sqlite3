@@ -40,7 +40,7 @@ I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't
  Some applications allow you to connect using an mDNS hostname.
 ![Image](https://github.com/user-attachments/assets/3fe6b00b-3966-4e1a-b13e-062412999b16)
 
-- Create database   
+- Create table   
 Type "CREATE TABLE test1 (id INTEGER, content);" and send.   
 ![Image](https://github.com/user-attachments/assets/d7c3f6c0-8858-4f1a-9c69-c4263f9eedf8)
 
@@ -52,7 +52,7 @@ Type "select name from sqlite_master where type='table';" and send.
 Type "select * from sqlite_master;" and send.   
 ![Image](https://github.com/user-attachments/assets/3af26414-7480-4332-8a59-004784e2ec2a)
 
-- Delete database   
+- Delete table   
 Type "drop table test1;" and send.   
 ![Image](https://github.com/user-attachments/assets/6df27a87-f668-4a7f-90c4-28899a9e1ee8)
 
