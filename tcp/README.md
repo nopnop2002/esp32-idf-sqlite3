@@ -31,12 +31,11 @@ There are several TCP-Clients available that run on Windows.
 [SocketTest](https://sourceforge.net/projects/sockettest/)   
 
 - Connect tcp server   
-Specify the IP address and port number of the ESP32.
-![Image](https://github.com/user-attachments/assets/04472473-3afa-435a-8450-1636f5a7aaf9)
-![Image](https://github.com/user-attachments/assets/11b02618-96fe-40f3-8864-cee05e6bcc99)
-
-![Image](https://github.com/user-attachments/assets/761919ff-cf13-4263-95fc-fdf1a9d170fe)
-Some applications allow you to connect using an mDNS hostname.
+ Specify the IP address and port number of the ESP32.
+![Image](https://github.com/user-attachments/assets/04472473-3afa-435a-8450-1636f5a7aaf9)   
+![Image](https://github.com/user-attachments/assets/11b02618-96fe-40f3-8864-cee05e6bcc99)   
+ Some applications allow you to connect using an mDNS hostname.
+![Image](https://github.com/user-attachments/assets/761919ff-cf13-4263-95fc-fdf1a9d170fe)   
 
 - Create database   
 Type "CREATE TABLE test1 (id INTEGER, content);" and send.   
