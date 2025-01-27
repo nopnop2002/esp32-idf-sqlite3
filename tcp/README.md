@@ -71,7 +71,7 @@ Type "select * from test1;" and send.
 Type "delete from test1 where id = 1;" and send.   
 ![Image](https://github.com/user-attachments/assets/305aab97-8e42-4f45-967d-ef664e0f4228)
 
-- Error   
+- Error notification   
 ![Image](https://github.com/user-attachments/assets/ed368dc7-d996-41c0-9b9e-17dbb2fbad1c)
 
 - Close database
