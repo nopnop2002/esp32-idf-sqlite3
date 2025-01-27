@@ -62,6 +62,7 @@ Type "INSERT INTO test1 VALUES (2, 'Goodbye, World from test1');" and send.
 - Fetch data   
 Type "select * from test1;" and send.   
 ![Image](https://github.com/user-attachments/assets/849435c0-a1c3-4ad4-98da-2095771234cb)
+![Image](https://github.com/user-attachments/assets/9e03a3a0-c163-46a2-893c-03e0526c5a48)
 
 - Delete data   
 Type "delete from test1 where id = 1;" and send.   
@@ -69,3 +70,8 @@ Type "delete from test1 where id = 1;" and send.
 
 - Error   
 ![Image](https://github.com/user-attachments/assets/ed368dc7-d996-41c0-9b9e-17dbb2fbad1c)
+
+- Close database
+Press the Disconnect button.   
+![Image](https://github.com/user-attachments/assets/ebbc75fb-2c3d-417c-a64b-244852abf9e2)
+![Image](https://github.com/user-attachments/assets/a91cd953-1ef2-43d8-9130-747135390a9a)
