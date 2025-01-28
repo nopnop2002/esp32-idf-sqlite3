@@ -66,7 +66,7 @@ If your ESP32 has more than 4M Flash, you can change ```partitions.csv```.
 
 # How to use
 A MQTT-Client app is required.   
-There are several MQTT-Clients available that run on Windows.   
+There are many applications available on the Internet.   
 I used [this](https://mqttx.app/) application.   
 This application works not only on Windows, but also on Linux and Mac.   
 There are many other applications available.   
