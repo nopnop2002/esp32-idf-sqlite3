@@ -20,9 +20,11 @@ idf.py flash monitor
 ![Image](https://github.com/user-attachments/assets/d343837a-d2f5-469a-9012-ddd8d5031b0b)
 
 ## WiFi Setting   
+Set the information of your access point.   
 ![Image](https://github.com/user-attachments/assets/80e5d873-bbd4-4e5d-a710-678bc1b52cc0)
 
 ## Broker Setting   
+Set the information of your MQTT broker.   
 ![Image](https://github.com/user-attachments/assets/11b96d46-7eb3-49de-a0c1-1d1ba927aa0d)
 
 ### Select Transport   
