@@ -16,6 +16,8 @@ idf.py flash monitor
 
 # Configuration
 ![Image](https://github.com/user-attachments/assets/9b703004-7522-4624-8ae8-373f7c0544dd)
+
+Set the information of your access point.   
 ![Image](https://github.com/user-attachments/assets/c7fcefc3-dc7e-4ea2-ac7e-4481e3763e4f)
 
 
