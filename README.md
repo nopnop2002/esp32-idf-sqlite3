@@ -17,6 +17,7 @@ ESP-IDF V4.4 release branch reached EOL in July 2024.
 - Added littlefs example   
 - Added tcp example   
 - Added websocket example   
+- Added mqtt example   
 - Moved sqllib.c and sqllib.h to components
 
 # Installation
