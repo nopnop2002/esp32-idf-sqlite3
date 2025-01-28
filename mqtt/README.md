@@ -46,6 +46,9 @@ chmod 777 getpem.sh
 ./getpem.sh
 ```
 
+WebSocket/WebSocket Secure Port may differ depending on the broker used.   
+If you use a different server, you will need to change the port number from the default.   
+
 ### Select MQTT Protocol   
 This project supports MQTT Protocol V3.1.1/V5.   
 ![Image](https://github.com/user-attachments/assets/2217cd2d-db3b-4ecf-8ba2-cefb3209e279)
