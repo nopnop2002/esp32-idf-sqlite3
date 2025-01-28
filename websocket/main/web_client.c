@@ -27,7 +27,6 @@ extern MessageBufferHandle_t xMessageBufferToClient;
 static int callback(void *data, int argc, char **argv, char **azColName) {
 	char out[128];
 	char DEL = 0x04;
-	//printf("%s: ", (const char*)data);
 	for (int i = 0; i<argc; i++){
 		printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
 		int outlen = sprintf(out,"REPLY%c%s = %s", DEL, azColName[i], argv[i] ? argv[i] : "NULL");

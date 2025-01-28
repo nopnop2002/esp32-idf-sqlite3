@@ -48,7 +48,6 @@ static int callback(void *data, int argc, char **argv, char **azColName) {
 	ESP_LOGD(pcTaskGetName(NULL), "data=%p %p %d", data, sock, *sock);
 	int i;
 	char tx_buffer[128];
-	//printf("%s: ", (const char*)data);
 	for (i = 0; i<argc; i++){
 		printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
 		sprintf(tx_buffer, "%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
