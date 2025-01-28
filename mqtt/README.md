@@ -47,7 +47,7 @@ chmod 777 getpem.sh
 ```
 
 WebSocket/WebSocket Secure Port may differ depending on the broker used.   
-If you use a different server, you will need to change the port number from the default.   
+If you use a different MQTT server than the default, you will need to change the port number from the default.   
 
 ### Select MQTT Protocol   
 This project supports MQTT Protocol V3.1.1/V5.   
