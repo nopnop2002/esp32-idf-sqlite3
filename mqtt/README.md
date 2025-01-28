@@ -21,8 +21,10 @@ idf.py flash monitor
 ![Image](https://github.com/user-attachments/assets/80e5d873-bbd4-4e5d-a710-678bc1b52cc0)
 
 ## Broker Setting   
-This project supports TCP,SSL/TLS,WebSocket and WebSocket Secure Port.   
 ![Image](https://github.com/user-attachments/assets/11b96d46-7eb3-49de-a0c1-1d1ba927aa0d)
+
+### Select Transport   
+This project supports TCP,SSL/TLS,WebSocket and WebSocket Secure Port.   
 
 - Using TCP Port.   
  TCP Port uses the MQTT protocol.   
@@ -44,10 +46,18 @@ chmod 777 getpem.sh
 ./getpem.sh
 ```
 
+### Select MQTT Protocol   
+This project supports MQTT Protocol V3.1.1/V5.   
+![Image](https://github.com/user-attachments/assets/2217cd2d-db3b-4ecf-8ba2-cefb3209e279)
+
+### Enable Secure Option   
+Specifies the username and password if the server requires a password when connecting.   
+[Here's](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-the-mosquitto-mqtt-messaging-broker-on-debian-10) how to install and secure the Mosquitto MQTT messaging broker on Debian 10.   
+![Image](https://github.com/user-attachments/assets/cd0115f4-d15b-42a6-aaa6-e7c1e76d18cc)
+
 # Partition size
 To support the ESP32-C series, this project uses a partition of 0xB0000 (=690K) by default.   
 If your ESP32 has more than 4M Flash, you can change ```partitions.csv```.   
-
 
 # How to use
 A MQTT-Client app is required.   
