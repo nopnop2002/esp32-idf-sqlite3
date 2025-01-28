@@ -2,6 +2,8 @@
 Demo of using sqlite3 over MQTT.   
 This project requires a WiFi connection.   
 
+![Image](https://github.com/user-attachments/assets/3a16bdd6-f956-4c4b-b74f-98be7640b734)
+
 # Changes from the original   
 - Newly created   
 
