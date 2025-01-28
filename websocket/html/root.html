@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+		<!--
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+		<meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+		-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css">
+		<title>sqlite3</title>
+	</head>
+	<body>
+		<div class="main">
+				<div class="column">
+					<div class="card publisher">
+						<header class="card-header">
+							<h1 class="card-header-title">
+								SQL Command
+							</h1>
+						</header>
+						<div class="card-content">
+							<form name="publisher" class="content">
+								<div class="field">
+									<div class="control">
+										<input id="payload" name="payload" type="text" size="100" placeholder="Type here">
+									</div>
+								</div>
+							</form>
+							<div class="field is-grouped">
+								<p class="control">
+									<button id="BtnSend" onclick="sendText('payload')">Send</button>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="column">
+					<div class="card receiver">
+						<header class="card-header">
+							<h1 class="card-header-title">
+								SQL Reply
+							</h1>
+						</header>
+						<div class="card-content">
+							<!--
+							<form name="publisher" class="content">
+								<div class="field">
+									<div class="control">
+										<label for="line">Number of display items</label>
+										<input id="line" name="line" type="number" min="10" value="10">
+									</div>
+								</div>
+							</form>
+							-->
+							<div class="field is-grouped">
+								<p class="control">
+									<!--
+									<button id="Btnline" class="card-footer-item button is-primary" onclick="changeLine()">Send</button>
+									-->
+									<button id="BtnClear" onclick="btnClear()">Clear</button>
+									<button id="BtnCopy" onclick="btnCopy()">Copy</button>
+								</p>
+							</div>
+							<div class="content">
+								<textarea readonly id="reply" class="message is-success" name="reply" rows="10" cols="100">
+								</textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>
