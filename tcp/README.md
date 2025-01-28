@@ -1,6 +1,8 @@
 # Sqlite3 Over TCP
 Demo of using sqlite3 over TCP.   
 This project requires a WiFi connection.   
+![Image](https://github.com/user-attachments/assets/849435c0-a1c3-4ad4-98da-2095771234cb)
+![Image](https://github.com/user-attachments/assets/9e03a3a0-c163-46a2-893c-03e0526c5a48)
 
 # Changes from the original   
 - Newly created   
