@@ -25,6 +25,7 @@ This project supports TCP,SSL/TLS,WebSocket and WebSocket Secure Port.
 ![Image](https://github.com/user-attachments/assets/11b96d46-7eb3-49de-a0c1-1d1ba927aa0d)
 
 - Using TCP Port.   
+ TCP Port uses the MQTT protocol.   
 
 - Using SSL/TLS Port.   
  SSL/TLS Port uses the MQTTS protocol instead of the MQTT protocol.   
@@ -49,7 +50,6 @@ If your ESP32 has more than 4M Flash, you can change ```partitions.csv```.
 
 
 # How to use
-This project works as a MQTT-Client.   
 A MQTT-Client app is required.   
 There are several MQTT-Clients available that run on Windows.   
 I used [this](https://mqttx.app/) application.   
