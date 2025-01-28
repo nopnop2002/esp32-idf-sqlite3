@@ -111,7 +111,7 @@ void sqlite(void *pvParameters)
 		}
 	} // end while
 
-	// Never reach here
+	// Close database
 	printf("Closed database\n");
 	sqlite3_close(db);
 	vTaskDelete(NULL);

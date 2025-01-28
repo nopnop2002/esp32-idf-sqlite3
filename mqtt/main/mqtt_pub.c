@@ -72,7 +72,7 @@ void convert_mdns_host(char * from, char * to);
 
 void mqtt_pub(void *pvParameters)
 {
-	ESP_LOGI(TAG, "Start Publish Broker:%s", CONFIG_MQTT_BROKER);
+	ESP_LOGI(TAG, "Start CONFIG_MQTT_BROKER=[%s]", CONFIG_MQTT_BROKER);
 
 	// Create Event Group
 	mqtt_status_event_group = xEventGroupCreate();
