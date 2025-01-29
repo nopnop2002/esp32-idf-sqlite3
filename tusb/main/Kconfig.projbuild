@@ -1,0 +1,9 @@
+menu "Application Configuration"
+
+	config LOCAL_ECHO
+		bool "Enable local echo"
+		default y
+		help
+			Enable local echo
+
+endmenu
