@@ -71,7 +71,7 @@ A MQTT-Client app is required.
 There are many applications available on the Internet.   
 I used [this](https://mqttx.app/) application.   
 This application works not only on Windows, but also on Linux and Mac.   
-There are many other applications available.   
+Many other applications are available on the Internet.   
 
 - Create table   
 Type "CREATE TABLE test1 (id INTEGER, content);" and send.   
