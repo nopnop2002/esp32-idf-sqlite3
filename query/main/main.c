@@ -1,6 +1,6 @@
 /*
-	This example creates two databases on SPIFFS,
-	inserts and retrieves data from them.
+	This example creates one databases on SPIFFS,
+	Query whether a table and record exist.
 */
 #include <stdio.h>
 #include <sys/unistd.h>
