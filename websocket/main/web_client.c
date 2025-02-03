@@ -89,7 +89,7 @@ void client_task(void* pvParameters) {
 				char *sql = cJSON_GetObjectItem(root,"data")->valuestring;
 				ESP_LOGI(pcTaskGetName(NULL),"sql=[%s]", sql);
 				if (strlen(sql) != 0) {
-					// Execte sql 
+					// Execute sql 
 					char errmsg[128];
 					int rc = sock_db_exec(db, sql, errmsg);
 					ESP_LOGI(pcTaskGetName(NULL), "rc=%d", rc);

@@ -178,7 +178,7 @@ void tcp_server(void *pvParameters)
 				ESP_LOGI(pcTaskGetName(NULL), "[%.*s]", len, rx_buffer);
 				ESP_LOGI(pcTaskGetName(NULL), "[%s]", rx_buffer);
 
-				// Execte sql 
+				// Execute sql 
 				char tx_buffer[128];
 				char errmsg[128];
 				int rc = tcp_db_exec(sock, db, rx_buffer, errmsg);

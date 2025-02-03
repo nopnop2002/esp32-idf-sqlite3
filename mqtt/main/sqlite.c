@@ -98,7 +98,7 @@ void sqlite(void *pvParameters)
 		rx_buffer[received] = 0;
 		ESP_LOGI(TAG, "xMessageBufferReceive rx_buffer=[%s]", rx_buffer);
 
-		// Execte sql 
+		// Execute sql 
 		int rc = mqtt_db_exec(db, rx_buffer, errmsg);
 		ESP_LOGI(TAG, "rc=%d", rc);
 		if (rc != SQLITE_OK) {
