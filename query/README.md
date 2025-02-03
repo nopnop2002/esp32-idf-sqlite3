@@ -22,6 +22,7 @@ Operation done successfully
 W (9284) SQLITE3: Table created
 ```
 There is no record, so add one.   
+```
 select count(*) from test;
 Operation done successfully
 I (9294) SQLITE3: readBytes=12
