@@ -11,7 +11,6 @@ $ idf.py flash monitor
 ```
 
 There is no table, so create one.   
-There is no record, so add one.   
 ```
 Opened database successfully
 select count(*) from sqlite_master where name = 'test';
@@ -21,6 +20,8 @@ I (9154) SQLITE3: sqlmsg=[count(*) = 0]
 CREATE TABLE test (id INTEGER, content);
 Operation done successfully
 W (9284) SQLITE3: Table created
+```
+There is no record, so add one.   
 select count(*) from test;
 Operation done successfully
 I (9294) SQLITE3: readBytes=12
@@ -44,7 +45,6 @@ All Done
 $ idf.py flash monitor
 ```
 Since the table already exists, we will not cretae the table.   
-Since the record already exists, we will not add the record.   
 ```
 Opened database successfully
 select count(*) from sqlite_master where name = 'test';
@@ -52,6 +52,9 @@ Operation done successfully
 I (584) SQLITE3: readBytes=12
 I (584) SQLITE3: sqlmsg=[count(*) = 1]
 W (584) SQLITE3: Table already exists
+```
+Since the record already exists, we will not add the record.   
+```
 select count(*) from test;
 Operation done successfully
 I (604) SQLITE3: readBytes=12
