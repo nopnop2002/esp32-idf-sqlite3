@@ -25,7 +25,7 @@ Set the information of your access point.
 ![Image](https://github.com/user-attachments/assets/6a382a6e-e687-4651-a210-801b29b69ea8)
 
 ## NTP Setting   
-![Image](https://github.com/user-attachments/assets/6a382a6e-e687-4651-a210-801b29b69ea8)
+Set the information of your NTP server and time zone.   
 ![Image](https://github.com/user-attachments/assets/10f9748b-5987-4c47-894f-b902c692b9a5)
 
 ## Redirect Setting   
