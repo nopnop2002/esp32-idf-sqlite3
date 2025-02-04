@@ -3,6 +3,8 @@ Demo of redirecting select results to the network.
 You can use udp/mqtt for the protocol.   
 This project requires a WiFi connection.   
 
+![Image](https://github.com/user-attachments/assets/3bebd47d-3f92-4f35-81e6-17a8ad89451f)
+
 # Changes from the original   
 - Newly created   
 
