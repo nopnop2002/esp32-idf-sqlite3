@@ -55,19 +55,23 @@ void ftp_client(void *pvParameters) {
 	sprintf(localFileName, "%s/local.json", base_path);
 	sprintf(remoteFileName, "sqlite.json");
 	cJSON *root = NULL;
-	cJSON *object = NULL;
+	cJSON *object[128];
+	int objectIndex = 0;
 #elif CONFIG_FTP_FILE_FORMAT_CSV
 	sprintf(localFileName, "%s/local.csv", base_path);
 	sprintf(remoteFileName, "sqlite.csv");
 	char headerBuffer[256];
 	char dataBuffer[256];
 	bool needHeader = true;
+	int fieldCounter = 0;
 #endif
 	FILE* f_local = NULL;
 	bool inRecord = false;
 	char itemName[128];
 	char itemValue[128];
-	int itemCounter;
+
+	uint32_t startHeap = 0;
+	uint32_t endHeap = 0;
 	while(1) {
 		size_t received = xMessageBufferReceive(xMessageBufferRedirect, buffer, sizeof(buffer), xTicksToWait);
 		ESP_LOGD(TAG, "xMessageBufferReceive received=%d", received);
@@ -75,6 +79,7 @@ void ftp_client(void *pvParameters) {
 			ESP_LOGI(TAG, "xMessageBufferReceive buffer=[%.*s]",received, buffer);
 			buffer[received] = 0;
 			if (strcmp(buffer, "<sql>") == 0) {
+				startHeap = esp_get_free_heap_size();
 				ESP_LOGI(TAG, "Start SQL");
 				xTicksToWait = 10;
 
@@ -85,22 +90,24 @@ void ftp_client(void *pvParameters) {
 				}
 #if CONFIG_FTP_FILE_FORMAT_JSON
 				root = cJSON_CreateArray();
+				objectIndex = 0;
+#elif CONFIG_FTP_FILE_FORMAT_CSV
 #endif
 			} else if (strcmp(buffer, "<record>") == 0) {
 				inRecord = true;
-				itemCounter = 0;
 #if CONFIG_FTP_FILE_FORMAT_JSON
-				object = cJSON_CreateObject();
+				object[objectIndex] = cJSON_CreateObject();
 #elif CONFIG_FTP_FILE_FORMAT_CSV
+				fieldCounter = 0;
 				memset(headerBuffer, 0, sizeof(headerBuffer));
 				memset(dataBuffer, 0, sizeof(dataBuffer));
 #endif
 			} else if (strcmp(buffer, "</record>") == 0) {
 				inRecord = false;
 #if CONFIG_FTP_FILE_FORMAT_JSON
-				//object are deleted in cJSON_AddItemToArray
-				cJSON_AddItemToArray(root, object);
-				//cJSON_Delete(object);
+				//object are deleted at cJSON_Delete(root)
+				cJSON_AddItemToArray(root, object[objectIndex]);
+				objectIndex++;
 #elif CONFIG_FTP_FILE_FORMAT_CSV
 				if (needHeader) {
 					fprintf(f_local, "%s\n", headerBuffer);
@@ -113,7 +120,6 @@ void ftp_client(void *pvParameters) {
 			if (inRecord) {
 				char *pos = strstr(buffer, " = ");
 				if (pos == NULL) continue;
-				itemCounter++;
 				ESP_LOGD(TAG, "pos=[%p] buffer=[%p] length=[%d] pos+3=[%s]", pos, buffer, pos - buffer, pos+3);
 				memset(itemName, 0, sizeof(itemName));
 				strncpy(itemName, buffer, (int)(pos - buffer));
@@ -121,9 +127,9 @@ void ftp_client(void *pvParameters) {
 				strcpy(itemValue, pos+3);
 				ESP_LOGD(TAG, "itemName=[%s] itemValue=[%s]", itemName, itemValue);
 #if CONFIG_FTP_FILE_FORMAT_JSON
-				cJSON_AddStringToObject(object, itemName, itemValue);
+				cJSON_AddStringToObject(object[objectIndex], itemName, itemValue);
 #elif CONFIG_FTP_FILE_FORMAT_CSV
-				if (itemCounter == 1) {
+				if (fieldCounter == 0) {
 					strcat(headerBuffer,"\"");;
 					strcat(dataBuffer,"\"");;
 				} else {
@@ -134,6 +140,7 @@ void ftp_client(void *pvParameters) {
 				strcat(headerBuffer,"\"");;
 				strcat(dataBuffer,itemValue);
 				strcat(dataBuffer,"\"");
+				fieldCounter++;
 #endif
 			}
 		} else {
@@ -146,6 +153,8 @@ void ftp_client(void *pvParameters) {
 			fprintf(f_local, "%s", my_json_string);
 			cJSON_free(my_json_string);
 			cJSON_Delete(root);
+			root = NULL;
+#elif CONFIG_FTP_FILE_FORMAT_CSV
 #endif
 			if (f_local != NULL) fclose(f_local);
 			ftpClient->ftpClientPut(localFileName, remoteFileName, FTP_CLIENT_TEXT, ftpClientNetBuf);
@@ -153,6 +162,8 @@ void ftp_client(void *pvParameters) {
 #elif CONFIG_FTP_FILE_FORMAT_CSV
 			needHeader = true;
 #endif
+			endHeap = esp_get_free_heap_size();
+			ESP_LOGI(TAG, "startHeap=%"PRIi32" endHeap=%"PRIi32, startHeap, endHeap);
 		}
 	}
 
