@@ -75,3 +75,28 @@ I (230) esp_psram: Speed: 40MHz
 ```
 
 
+# How to use this component in your project   
+Create idf_component.yml in the same directory as main.c.   
+```
+YourProject --+-- CMakeLists.txt
+              +-- main --+-- main.c
+                         +-- CMakeLists.txt
+                         +-- idf_component.yml
+```
+
+Contents of idf_component.yml.
+```
+dependencies:
+  nopnop2002/sqlite3:
+    path: components/esp32-idf-sqlite3/
+    git: https://github.com/nopnop2002/esp32-idf-sqlite3.git
+```
+
+When you build a projects esp-idf will automaticly fetch repository to managed_components dir and link with your code.   
+```
+YourProject --+-- CMakeLists.txt
+              +-- main --+-- main.c
+                         +-- CMakeLists.txt
+                         +-- idf_component.yml
+              +-- managed_components ----- nopnop2002__sqlite3
+```
