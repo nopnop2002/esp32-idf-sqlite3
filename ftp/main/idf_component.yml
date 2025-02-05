@@ -1,0 +1,5 @@
+dependencies:
+  ftpClient:
+    path: components/ftpClient/
+    git: https://github.com/nopnop2002/esp-idf-ftpClient.git
+

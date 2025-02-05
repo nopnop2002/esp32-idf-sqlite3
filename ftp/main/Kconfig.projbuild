@@ -1,0 +1,85 @@
+menu "Application Configuration"
+
+	menu "WiFi Settting"
+
+		config ESP_WIFI_SSID
+			string "WiFi SSID"
+			default "myssid"
+			help
+				SSID (network name) for the example to connect to.
+
+		config ESP_WIFI_PASSWORD
+			string "WiFi Password"
+			default "mypassword"
+			help
+				WiFi password (WPA or WPA2) for the example to use.
+
+		config ESP_MAXIMUM_RETRY
+			int "Maximum retry"
+			default 5
+			help
+				Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.
+
+	endmenu
+
+	menu "NTP Setting"
+
+		config NTP_SERVER
+			string "Hostname for NTP Server"
+			default "pool.ntp.org"
+			help
+				Hostname for NTP Server.
+
+		config LOCAL_TIMEZONE
+			int "Your local timezone"
+			range -23 23
+			default 0
+			help
+				Your local timezone.  When it is 0, Greenwich Mean Time.
+
+	endmenu
+
+	menu "FTP Server Setting"
+
+		config FTP_SERVER
+			string "FTP Server Host"
+			default "ftpserver.local"
+			help
+				FTP Server host name or ip address to connect.
+
+		config FTP_PORT
+			int "FTP Server Port"
+			default 21
+			help
+				FTP Server port number to connect.
+
+		config FTP_USER
+			string "FTP User Name"
+			default "ftpuser"
+			help
+				FTP User name to use.
+
+		config FTP_PASSWORD
+			string "FTP Password"
+			default "ftppass"
+			help
+				FTP Password to use.
+
+        choice FTP_FILE_FORMAT
+            prompt "Remote file format"
+            default FTP_FILE_FORMAT_JSON
+            help
+                Select Remote file format.
+            config FTP_FILE_FORMAT_JSON
+                bool "Using JSON format"
+                help
+                    Using JSON format
+            config FTP_FILE_FORMAT_CSV
+                bool "Using CSV format"
+                help
+                    Using CSV format
+        endchoice
+
+	endmenu
+	
+endmenu
