@@ -78,7 +78,7 @@ $ cat sqlite.json
         }]
 ```
 
-You can select CSV format as the file format.   
+You can change the file format to CSV format.   
 ![Image](https://github.com/user-attachments/assets/64082304-ae6d-4316-806e-8f29e9c62966)
 ```
 $ cat sqlite.csv
