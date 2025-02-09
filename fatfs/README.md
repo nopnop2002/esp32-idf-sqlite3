@@ -1,4 +1,5 @@
 # Sqlite3 FATFS example
+Demo of using fatfs file system.   
 Creates two Sqlite3 databases on FATFS, inserts and retrieves data from them.
 
 # Changes from the original   
