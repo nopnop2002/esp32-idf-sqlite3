@@ -1,6 +1,7 @@
 # Sqlite3 Over TinyUSB
 Demo of using sqlite3 over TinyUSB.   
 This project requires a USB connection.   
+You can execure SQL commands using serial terminal software.   
 
 ![Image](https://github.com/user-attachments/assets/0a9e0d27-a8f7-42e1-bd5b-99efed1c2648)
 
