@@ -1,5 +1,5 @@
 # Sqlite3 SDSPI example
-
+Demo of using FATFS file system on SDSPI peripheral.   
 Uses the SDSPI peripheral on ESP32 to retrieve from SQLite databases.
 
 # Changes from the original   
