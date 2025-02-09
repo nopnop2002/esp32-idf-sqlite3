@@ -1,4 +1,5 @@
 # Sqlite3 LittleFS example
+Demo of using LittleFS file system.   
 Creates two Sqlite3 databases on LittleFS, inserts and retrieves data from them.
 
 # Changes from the original   
