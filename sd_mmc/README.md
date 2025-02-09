@@ -1,5 +1,5 @@
 # Sqlite3 SDMMC example
-
+Demo of using FATFS file system on SDMMC peripheral.   
 Uses the SDMMC peripheral on ESP32/ESP32S3 to retrieve from SQLite databases.
 
 # Changes from the original   
