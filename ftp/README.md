@@ -4,7 +4,7 @@ This project requires a WiFi connection and ftp server.
 This project uses [this](https://github.com/nopnop2002/esp-idf-ftpClient) component.   
 
 
-This project will run this sql command periodically.   
+This project will execute this sql command periodically.   
 ```SELECT * FROM test order by rowid```   
 Receive the results in a file.   
 
