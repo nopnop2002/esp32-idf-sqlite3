@@ -1,4 +1,5 @@
 # Sqlite3 SPIFFS example
+Demo of using SPIFFS file system.   
 Creates two Sqlite3 databases on SPIFFS, inserts and retrieves data from them.
 
 # Changes from the original   
