@@ -32,7 +32,11 @@ Set the information of your NTP server and time zone.
 Set the information of your FTP server.   
 ![Image](https://github.com/user-attachments/assets/4e27a9f4-0ae4-400d-9960-fde724d2ca5c)
 
-The default output format is JSON.
+
+This project executes this sql command.   
+```SELECT * FROM test order by rowid```   
+Receive the results in a file.   
+The default output format is JSON.   
 ```
 $ cat sqlite.json
 [{
