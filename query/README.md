@@ -10,7 +10,7 @@ $ idf.py erase-flash
 $ idf.py flash monitor
 ```
 
-There is no table, so create one.   
+There is no table, so we will create one.   
 ```
 Opened database successfully
 select count(*) from sqlite_master where name = 'test';
@@ -21,7 +21,7 @@ CREATE TABLE test (id INTEGER, content);
 Operation done successfully
 W (9284) SQLITE3: Table created
 ```
-There is no record, so add one.   
+There is no record, so we will add one.   
 ```
 select count(*) from test;
 Operation done successfully
