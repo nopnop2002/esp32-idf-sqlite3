@@ -4,6 +4,7 @@ This project requires a WiFi connection.
 I used [this](https://github.com/Molorius/esp32-websocket) component.   
 This component can communicate directly with the browser.   
 It's a great job.   
+You can execure SQL commands using browser.   
 
 ![Image](https://github.com/user-attachments/assets/dff2d26f-fc94-42e8-b56e-19f72b59402e)
 
