@@ -3,6 +3,11 @@ Demo of posting selected results to an FTP server.
 This project requires a WiFi connection and ftp server.   
 This project uses [this](https://github.com/nopnop2002/esp-idf-ftpClient) component.   
 
+
+This project will run this sql command periodically.   
+```SELECT * FROM test order by rowid```   
+Receive the results in a file.   
+
 ![Image](https://github.com/user-attachments/assets/128c6cac-ddba-4f75-8610-4dafd6f4e86a)
 
 # Changes from the original   
@@ -33,9 +38,6 @@ Set the information of your FTP server.
 ![Image](https://github.com/user-attachments/assets/4e27a9f4-0ae4-400d-9960-fde724d2ca5c)
 
 
-This project executes this sql command.   
-```SELECT * FROM test order by rowid```   
-Receive the results in a file.   
 The default output format is JSON.   
 ```
 $ cat sqlite.json
