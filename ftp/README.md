@@ -1,4 +1,4 @@
-# Filr transfer using FTP
+# File transfer using FTP
 Demo of posting selected results to an FTP server.   
 This project requires a WiFi connection and ftp server.   
 This project uses [this](https://github.com/nopnop2002/esp-idf-ftpClient) component.   
