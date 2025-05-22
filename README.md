@@ -4,7 +4,6 @@ The original is [here](https://github.com/siara-cc/esp32-idf-sqlite3).
 Although it is a very nice library, it cannot be built with ESP-IDF Ver5.   
 Therefore, We changed it so that it can also be used with ESP-IDF Ver5.   
 At the same time, we also changed the sample code so that it can be used with ESP-IDF Ver5.   
-__If there is a issues in the original, the same issues will be found in this repository.__   
 
 # Software requirements   
 ESP-IDF V5.0 or later.   
@@ -18,6 +17,10 @@ ESP-IDF V4.4 release branch reached EOL in July 2024.
 - Added tcp/websocket/mqtt/tusb example   
 - Added query/redirect/ftp example   
 - Moved sqllib.c and sqllib.h to components
+
+__If there is a issues in the original, the same issues will be found in this repository.__   
+__If you find any issues in this repository, we welcome your PR to resolve them.__   
+
 
 # Installation
 ```
