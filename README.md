@@ -19,7 +19,7 @@ ESP-IDF V4.4 release branch reached EOL in July 2024.
 - Moved sqllib.c and sqllib.h to components
 
 __If there is a issues in the original, the same issues will be found in this repository.__   
-__If you find any issues in this repository, we welcome your PR to resolve them.__   
+__If you find any issues, we welcome your PR to resolve them.__   
 
 
 # Installation
