@@ -11,6 +11,7 @@ ESP-IDF V4.4 release branch reached EOL in July 2024.
 
 # Changes from the original   
 - Change to local component   
+- Component and sample code provided in the same repository   
 - Disable compile warnings   
 - Supports PSRAM   
 - Added fatfs/littlefs example   
