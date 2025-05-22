@@ -4,6 +4,7 @@ The original is [here](https://github.com/siara-cc/esp32-idf-sqlite3).
 Although it is a very nice library, it cannot be built with ESP-IDF Ver5.   
 Therefore, We changed it so that it can also be used with ESP-IDF Ver5.   
 At the same time, we also changed the sample code so that it can be used with ESP-IDF Ver5.   
+__If there is a issues in the original, the same issues will be found in this repository.__   
 
 # Software requirements   
 ESP-IDF V5.0 or later.   
