@@ -17,6 +17,8 @@
 #include <esp_system.h>
 #include <rom/ets_sys.h>
 #include <sys/stat.h>
+#include <esp_random.h>
+#include <spi_flash_mmap.h> // SPI_FLASH_SEC_SIZE
 
 #include "shox96_0_2.h"
 #include "esp_idf_compat.h"
