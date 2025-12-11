@@ -66,12 +66,11 @@ static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_
 	}
 }
 
-void wifi_init_sta(void)
+esp_err_t wifi_init_sta(void)
 {
 	s_wifi_event_group = xEventGroupCreate();
 
 	ESP_ERROR_CHECK(esp_netif_init());
-
 	ESP_ERROR_CHECK(esp_event_loop_create_default());
 	esp_netif_create_default_wifi_sta();
 
@@ -106,14 +105,14 @@ void wifi_init_sta(void)
 			},
 		},
 	};
-	ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA) );
-	ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config) );
-	ESP_ERROR_CHECK(esp_wifi_start() );
-
-	ESP_LOGI(TAG, "wifi_init_sta finished.");
+	ESP_ERROR_CHECK(esp_wifi_set_ps(WIFI_PS_NONE));
+	ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+	ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
+	ESP_ERROR_CHECK(esp_wifi_start());
 
 	/* Waiting until either the connection is established (WIFI_CONNECTED_BIT) or connection failed for the maximum
 	 * number of re-tries (WIFI_FAIL_BIT). The bits are set by event_handler() (see above) */
+	esp_err_t ret_value = ESP_OK;
 	EventBits_t bits = xEventGroupWaitBits(s_wifi_event_group,
 		WIFI_CONNECTED_BIT | WIFI_FAIL_BIT,
 		pdFALSE,
@@ -126,14 +125,17 @@ void wifi_init_sta(void)
 		ESP_LOGI(TAG, "connected to ap SSID:%s password:%s", CONFIG_ESP_WIFI_SSID, CONFIG_ESP_WIFI_PASSWORD);
 	} else if (bits & WIFI_FAIL_BIT) {
 		ESP_LOGI(TAG, "Failed to connect to SSID:%s, password:%s", CONFIG_ESP_WIFI_SSID, CONFIG_ESP_WIFI_PASSWORD);
+		ret_value = ESP_FAIL;
 	} else {
 		ESP_LOGE(TAG, "UNEXPECTED EVENT");
+		ret_value = ESP_FAIL;
 	}
 
 	/* The event will not be processed after unregister */
 	ESP_ERROR_CHECK(esp_event_handler_instance_unregister(IP_EVENT, IP_EVENT_STA_GOT_IP, instance_got_ip));
 	ESP_ERROR_CHECK(esp_event_handler_instance_unregister(WIFI_EVENT, ESP_EVENT_ANY_ID, instance_any_id));
 	vEventGroupDelete(s_wifi_event_group);
+	return ret_value;
 }
 
 esp_err_t mountSPIFFS(char * path, char * label, int max_files) {
@@ -184,86 +186,86 @@ esp_err_t mountSPIFFS(char * path, char * label, int max_files) {
 
 void time_sync_notification_cb(struct timeval *tv)
 {
-    ESP_LOGI(TAG, "Notification of a time synchronization event");
+	ESP_LOGI(TAG, "Notification of a time synchronization event");
 }
 
 static void initialize_sntp(void)
 {
-    ESP_LOGI(TAG, "Initializing SNTP");
-    esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
-    //sntp_setservername(0, "pool.ntp.org");
-    ESP_LOGI(TAG, "Your NTP Server is %s", CONFIG_NTP_SERVER);
-    esp_sntp_setservername(0, CONFIG_NTP_SERVER);
-    sntp_set_time_sync_notification_cb(time_sync_notification_cb);
-    esp_sntp_init();
+	ESP_LOGI(TAG, "Initializing SNTP");
+	esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
+	//sntp_setservername(0, "pool.ntp.org");
+	ESP_LOGI(TAG, "Your NTP Server is %s", CONFIG_NTP_SERVER);
+	esp_sntp_setservername(0, CONFIG_NTP_SERVER);
+	sntp_set_time_sync_notification_cb(time_sync_notification_cb);
+	esp_sntp_init();
 }
 
 static esp_err_t obtain_time(void)
 {
-    initialize_sntp();
-    // wait for time to be set
-    int retry = 0;
-    const int retry_count = 10;
-    while (sntp_get_sync_status() == SNTP_SYNC_STATUS_RESET && ++retry < retry_count) {
-        ESP_LOGI(TAG, "Waiting for system time to be set... (%d/%d)", retry, retry_count);
-        vTaskDelay(2000 / portTICK_PERIOD_MS);
-    }
+	initialize_sntp();
+	// wait for time to be set
+	int retry = 0;
+	const int retry_count = 10;
+	while (sntp_get_sync_status() == SNTP_SYNC_STATUS_RESET && ++retry < retry_count) {
+		ESP_LOGI(TAG, "Waiting for system time to be set... (%d/%d)", retry, retry_count);
+		vTaskDelay(2000 / portTICK_PERIOD_MS);
+	}
 
-    if (retry == retry_count) return ESP_FAIL;
-    return ESP_OK;
+	if (retry == retry_count) return ESP_FAIL;
+	return ESP_OK;
 }
 
 esp_err_t query_mdns_host(const char * host_name, char *ip)
 {
-    ESP_LOGD(__FUNCTION__, "Query A: %s", host_name);
+	ESP_LOGD(__FUNCTION__, "Query A: %s", host_name);
 
-    struct esp_ip4_addr addr;
-    addr.addr = 0;
+	struct esp_ip4_addr addr;
+	addr.addr = 0;
 
-    esp_err_t err = mdns_query_a(host_name, 10000,  &addr);
-    if(err){
-        if(err == ESP_ERR_NOT_FOUND){
-            ESP_LOGW(__FUNCTION__, "%s: Host was not found!", esp_err_to_name(err));
-            return ESP_FAIL;
-        }
-        ESP_LOGE(__FUNCTION__, "Query Failed: %s", esp_err_to_name(err));
-        return ESP_FAIL;
-    }
+	esp_err_t err = mdns_query_a(host_name, 10000,	&addr);
+	if(err){
+		if(err == ESP_ERR_NOT_FOUND){
+			ESP_LOGW(__FUNCTION__, "%s: Host was not found!", host_name);
+		} else {
+			ESP_LOGE(__FUNCTION__, "Query Failed: %s", esp_err_to_name(err));
+		}
+		return ESP_FAIL;
+	}
 
-    ESP_LOGD(__FUNCTION__, "Query A: %s.local resolved to: " IPSTR, host_name, IP2STR(&addr));
-    sprintf(ip, IPSTR, IP2STR(&addr));
-    return ESP_OK;
+	ESP_LOGD(__FUNCTION__, "Query A: %s.local resolved to: " IPSTR, host_name, IP2STR(&addr));
+	sprintf(ip, IPSTR, IP2STR(&addr));
+	return ESP_OK;
 }
 
 void convert_mdns_host(char * from, char * to)
 {
-    ESP_LOGI(__FUNCTION__, "from=[%s]",from);
-    strcpy(to, from);
-    char *sp;
-    sp = strstr(from, ".local");
-    if (sp == NULL) return;
+	ESP_LOGI(__FUNCTION__, "from=[%s]",from);
+	strcpy(to, from);
+	char *sp;
+	sp = strstr(from, ".local");
+	if (sp == NULL) return;
 
-    int _len = sp - from;
-    ESP_LOGD(__FUNCTION__, "_len=%d", _len);
-    char _from[128];
-    strcpy(_from, from);
-    _from[_len] = 0;
-    ESP_LOGI(__FUNCTION__, "_from=[%s]", _from);
+	int _len = sp - from;
+	ESP_LOGD(__FUNCTION__, "_len=%d", _len);
+	char _from[128];
+	strcpy(_from, from);
+	_from[_len] = 0;
+	ESP_LOGI(__FUNCTION__, "_from=[%s]", _from);
 
-    char _ip[128];
-    esp_err_t ret = query_mdns_host(_from, _ip);
-    ESP_LOGI(__FUNCTION__, "query_mdns_host=%d _ip=[%s]", ret, _ip);
-    if (ret != ESP_OK) return;
+	char _ip[128];
+	esp_err_t ret = query_mdns_host(_from, _ip);
+	ESP_LOGI(__FUNCTION__, "query_mdns_host=%d _ip=[%s]", ret, _ip);
+	if (ret != ESP_OK) return;
 
-    strcpy(to, _ip);
-    ESP_LOGI(__FUNCTION__, "to=[%s]", to);
+	strcpy(to, _ip);
+	ESP_LOGI(__FUNCTION__, "to=[%s]", to);
 }
 
 // Timer callback
 static void timerCallback(TimerHandle_t xTimer)
 {
-    TaskHandle_t taskHandle = ( TaskHandle_t ) pvTimerGetTimerID( xTimer );
-    vTaskNotifyGiveFromISR(taskHandle, NULL);
+	TaskHandle_t taskHandle = ( TaskHandle_t ) pvTimerGetTimerID( xTimer );
+	vTaskNotifyGiveFromISR(taskHandle, NULL);
 }
 
 void sqlite(void *pvParameters);
@@ -275,25 +277,25 @@ void mqtt_pub(void *pvParameters);
 #endif
 
 void app_main() {
-    // Initialize NVS
-    esp_err_t ret = nvs_flash_init();
-    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-        ESP_ERROR_CHECK(nvs_flash_erase());
-        ret = nvs_flash_init();
-    }
-    ESP_ERROR_CHECK(ret);
+	// Initialize NVS
+	esp_err_t ret = nvs_flash_init();
+	if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+		ESP_ERROR_CHECK(nvs_flash_erase());
+		ret = nvs_flash_init();
+	}
+	ESP_ERROR_CHECK(ret);
 
 	// Mount SPIFFS
 	char *base_path = "/spiffs";
 	ESP_ERROR_CHECK(mountSPIFFS(base_path, "storage", 2));
 
-    // Initialize WiFi
-    wifi_init_sta();
+	// Initialize WiFi
+	ESP_ERROR_CHECK(wifi_init_sta());
 
-    // Initialize mDNS
-    ESP_ERROR_CHECK( mdns_init() );
+	// Initialize mDNS
+	ESP_ERROR_CHECK( mdns_init() );
 
-    // obtain time over NTP
+	// obtain time over NTP
 	ESP_ERROR_CHECK(obtain_time());
 
 	// Create Message Buffer
@@ -316,16 +318,16 @@ void app_main() {
 	xTaskCreate(mqtt_pub, "MQTT", 1024*4, NULL, 5, NULL);
 #endif
 
-    // Create Timer
-    // Pass TaskHandle using pvTimerID
-    int TimerPeriod = 10 * 1000;
-    TimerHandle_t timerHandle = xTimerCreate("Trigger", TimerPeriod/portTICK_PERIOD_MS, pdTRUE, pxCreatedTask, timerCallback);
-    configASSERT( timerHandle );
+	// Create Timer
+	// Pass TaskHandle using pvTimerID
+	int TimerPeriod = 10 * 1000;
+	TimerHandle_t timerHandle = xTimerCreate("Trigger", TimerPeriod/portTICK_PERIOD_MS, pdTRUE, pxCreatedTask, timerCallback);
+	configASSERT( timerHandle );
 
-    // Start Timer
-    if (xTimerStart(timerHandle, 0) != pdPASS) {
-        ESP_LOGE(TAG, "Unable to start Timer");
-    }
+	// Start Timer
+	if (xTimerStart(timerHandle, 0) != pdPASS) {
+		ESP_LOGE(TAG, "Unable to start Timer");
+	}
 
 	while (1) {
 		vTaskDelay(1);
