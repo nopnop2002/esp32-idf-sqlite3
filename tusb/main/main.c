@@ -22,7 +22,8 @@
 #include "esp_vfs.h"
 #include "esp_spiffs.h"
 #include "tinyusb.h"
-#include "tusb_cdc_acm.h"
+#include "tinyusb_default_config.h"
+#include "tinyusb_cdc_acm.h"
 
 #include "sqlite3.h"
 #include "sqllib.h"
@@ -215,31 +216,28 @@ void app_main(void)
 	ESP_ERROR_CHECK(mountSPIFFS(base_path, "storage", 2));
 
 	// Initialize tinyusb driver
-	const tinyusb_config_t tusb_cfg = {
-		.device_descriptor = NULL,
-		.string_descriptor = NULL,
-		.external_phy = false,
-		.configuration_descriptor = NULL,
-	};
+	tinyusb_config_t tusb_cfg = TINYUSB_DEFAULT_CONFIG();
+#ifdef CONFIG_IDF_TARGET_ESP32P4
+	tusb_cfg.port = TINYUSB_PORT_FULL_SPEED_0;
+#endif
 	ESP_ERROR_CHECK(tinyusb_driver_install(&tusb_cfg));
 
 	// Enable USB Serial Device
 	// first way to register a callback
 	tinyusb_config_cdcacm_t acm_cfg = {
-		.usb_dev = TINYUSB_USBDEV_0,
 		.cdc_port = TINYUSB_CDC_ACM_0,
-		.rx_unread_buf_sz = 64,
 		.callback_rx = &tinyusb_cdc_rx_callback, // the first way to register a callback
 		.callback_rx_wanted_char = NULL,
 		.callback_line_state_changed = &tinyusb_cdc_line_state_changed_callback,
 		.callback_line_coding_changed = NULL
 	};
-	ESP_ERROR_CHECK(tusb_cdc_acm_init(&acm_cfg));
+	ESP_ERROR_CHECK(tinyusb_cdcacm_init(&acm_cfg));
 
-#if 0
-	// second way to register a callback
+#if (CONFIG_TINYUSB_CDC_COUNT > 1)
+	acm_cfg.cdc_port = TINYUSB_CDC_ACM_1;
+	ESP_ERROR_CHECK(tinyusb_cdcacm_init(&acm_cfg));
 	ESP_ERROR_CHECK(tinyusb_cdcacm_register_callback(
-		TINYUSB_CDC_ACM_0,
+		TINYUSB_CDC_ACM_1,
 		CDC_EVENT_LINE_STATE_CHANGED,
 		&tinyusb_cdc_line_state_changed_callback));
 #endif

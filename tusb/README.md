@@ -7,8 +7,8 @@ You can execure SQL commands using serial terminal software.
 
 
 # Hardware requirements
-1. ESP32-S2/S3 Development board   
-Because the ESP32-S2/S3 does support USB OTG.   
+1. ESP32-S2/S3/P4 Development board   
+Because the ESP32-S2/S3/P4 does support USB OTG.   
 
 2. USB Connector   
 I used this USB Mini femail:   
@@ -22,6 +22,15 @@ ESP32-S2/S3 BOARD          USB CONNECTOR
     [GPIO 20]    --------> | || D+
     [  GND  ]    --------> | || GND
                            +--+
+
+ESP32-P4 BOARD             USB CONNECTOR
+                           +--+
+                           | || VCC
+    [GPIO 26]    --------> | || D-
+    [GPIO 27]    --------> | || D+
+    [  GND  ]    --------> | || GND
+                           +--+
+
 ```
 
 # Configuration
