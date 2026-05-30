@@ -16,6 +16,7 @@ idf.py flash monitor
 ```
 # Hardware requirements   
 SD card reader with SPI connection.   
+SD card readers come in two types: those that operate on 5V and those that operate on 3.3V.   
 Requires hardware powered by 3.3V.   
 
 # Configuration
