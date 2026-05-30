@@ -15,7 +15,8 @@ idf.py menuconfig
 idf.py flash monitor
 ```
 # Hardware requirements   
-SD card reader with SPI connection.
+SD card reader with SPI connection.   
+Requires hardware powered by 3.3V.   
 
 # Configuration
 ![config-top](https://github.com/nopnop2002/esp32-idf-sqlite3/assets/6020549/d6287f8e-c552-4aad-bb52-e625a3a1c455)
