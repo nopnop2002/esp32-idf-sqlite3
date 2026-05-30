@@ -26,11 +26,11 @@ Requires hardware powered by 3.3V.
 # Wireing
 Click [here](https://github.com/espressif/esp-idf/tree/master/examples/storage/sd_card/sdspi) for details.   
 
-|ESP32|ESP32S2/S3|ESP32Cx/Hx|SPI card pin|Notes|
-|:-:|:-:|:-:|:-:|:--|
-|GPIO23|GPIO35|GPIO04|MOSI|10k pullup if can't mount|
-|GPIO19|GPIO37|GPIO03|MISO||
-|GPIO18|GPIO36|GPIO02|SCK||
-|GPIO5|GPIO34|GPIO01|CS|||
-|3.3V|3.3V|3.3V|VCC|Don't use 5V supply|
-|GND|GND|GND|GND||
+|SPI card pin||ESP32|ESP32S2/S3|ESP32Cx/Hx|Notes|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|MOSI||GPIO23|GPIO35|GPIO04|10k pullup if can't mount|
+|MISO||GPIO19|GPIO37|GPIO03||
+|SCK||GPIO18|GPIO36|GPIO02||
+|CS||GPIO5|GPIO34|GPIO01||
+|VCC||3.3V|3.3V|3.3V|Don't use 5V supply|
+|GND||GND|GND|GND||
