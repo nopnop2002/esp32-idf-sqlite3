@@ -2,7 +2,6 @@
 Demo of using sqlite3 over TCP.   
 This project requires a WiFi connection.   
 You can execure SQL commands using tcp software.   
-ESP32 operates as a TCP server.   
 
 ![Image](https://github.com/user-attachments/assets/9e03a3a0-c163-46a2-893c-03e0526c5a48)
 
