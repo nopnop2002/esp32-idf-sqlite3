@@ -28,7 +28,7 @@ void sqlite(void *pvParameter) {
 
 	int rc;
 	rc = db_exec(db1,
-		"CREATE TABLE Price(flower_ID integer primary key, flower_fruit text, family_ID integer, price integer);");
+		"CREATE TABLE pricelist(flower_ID integer primary key, flower_fruit text, family_ID integer, price integer);");
 	if (rc != SQLITE_OK) { vTaskDelete(NULL); }
 
 	char sql_command[128];
@@ -45,17 +45,21 @@ void sqlite(void *pvParameter) {
 	};
 	for (int i=0;i<9;i++) {
 		snprintf(sql_command, sizeof(sql_command)-1, 
-			"INSERT INTO Price (flower_ID,flower_fruit,family_ID,price) VALUES %s;", values[i]);
+			"INSERT INTO pricelist (flower_ID,flower_fruit,family_ID,price) VALUES %s;", values[i]);
 		//printf("sql_command=[%s]\n", sql_command);
 		rc = db_exec(db1, sql_command);
 		if (rc != SQLITE_OK) { vTaskDelete(NULL); }
 	}
 	
-	rc = db_exec(db1, "SELECT * FROM Price;");
+	rc = db_exec(db1, "SELECT * FROM pricelist;");
 	if (rc != SQLITE_OK) { vTaskDelete(NULL); }
 
 	rc = db_exec(db1, 
-		"Select flower_fruit, price from price where price = (select max(price) from price);");
+		"SELECT flower_fruit, price from pricelist where price = (select max(price) from pricelist);");
+	if (rc != SQLITE_OK) { vTaskDelete(NULL); }
+
+	rc = db_exec(db1, 
+		"SELECT flower_fruit, price from pricelist where price = (select min(price) from pricelist);");
 	if (rc != SQLITE_OK) { vTaskDelete(NULL); }
 
 	sqlite3_close(db1);

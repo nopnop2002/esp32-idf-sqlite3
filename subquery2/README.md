@@ -21,25 +21,25 @@ If your ESP32 has more than 4M Flash, you can change ```partitions.csv```.
 
 # Create Table
 ```
-CREATE TABLE Price(flower_ID integer primary key, flower_fruit text, family_ID integer, price integer);
+CREATE TABLE pricelist(flower_ID integer primary key, flower_fruit text, family_ID integer, price integer);
 ```
 
 # Insert data
 ```
-INSERT INTO Price (flower_ID,flower_fruit,family_ID,price) VALUES (10,'rose',10,150);
-INSERT INTO Price (flower_ID,flower_fruit,family_ID,price) VALUES (20,'azalea',20,200);
-INSERT INTO Price (flower_ID,flower_fruit,family_ID,price) VALUES (30,'orange',30,500);
-INSERT INTO Price (flower_ID,flower_fruit,family_ID,price) VALUES (1,'apple',10,120);
-INSERT INTO Price (flower_ID,flower_fruit,family_ID,price) VALUES (2,'grapefruit',30,150);
-INSERT INTO Price (flower_ID,flower_fruit,family_ID,price) VALUES (3,'rhododendron',20,250);
-INSERT INTO Price (flower_ID,flower_fruit,family_ID,price) VALUES (4,'blueberry',20,370);
-INSERT INTO Price (flower_ID,flower_fruit,family_ID,price) VALUES (5,'plum',10,400);
-INSERT INTO Price (flower_ID,flower_fruit,family_ID,price) VALUES (6,'peach',10,390);
+INSERT INTO pricelist (flower_ID,flower_fruit,family_ID,price) VALUES (10,'rose',10,150);
+INSERT INTO pricelist (flower_ID,flower_fruit,family_ID,price) VALUES (20,'azalea',20,200);
+INSERT INTO pricelist (flower_ID,flower_fruit,family_ID,price) VALUES (30,'orange',30,500);
+INSERT INTO pricelist (flower_ID,flower_fruit,family_ID,price) VALUES (1,'apple',10,120);
+INSERT INTO pricelist (flower_ID,flower_fruit,family_ID,price) VALUES (2,'grapefruit',30,150);
+INSERT INTO pricelist (flower_ID,flower_fruit,family_ID,price) VALUES (3,'rhododendron',20,250);
+INSERT INTO pricelist (flower_ID,flower_fruit,family_ID,price) VALUES (4,'blueberry',20,370);
+INSERT INTO pricelist (flower_ID,flower_fruit,family_ID,price) VALUES (5,'plum',10,400);
+INSERT INTO pricelist (flower_ID,flower_fruit,family_ID,price) VALUES (6,'peach',10,390);
 ```
 
 # Query Price
 ```
-SELECT * FROM Price;
+SELECT * FROM pricelist;
 Callback function called: flower_ID = 1
 flower_fruit = apple
 family_ID = 10
@@ -88,7 +88,11 @@ price = 500
 
 # Subquery
 ```
-Select flower_fruit, price from price where price = (select max(price) from price);
+SELECT flower_fruit, price from pricelist where price = (select max(price) from pricelist);
 Callback function called: flower_fruit = orange
 price = 500
+
+SELECT flower_fruit, price from pricelist where price = (select min(price) from pricelist);
+Callback function called: flower_fruit = apple
+price = 120
 ```
