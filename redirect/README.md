@@ -12,6 +12,7 @@ INSERT INTO test VALUES (1, '%s');
 ```
 
 This project will execute this SQL command periodically.   
+The datetime column will be updated with the current date and time.   
 SELECT results are received via UDP/MQTT.   
 ```
 UPDATE test SET datetime = '%s' where id = 1;
