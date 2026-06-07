@@ -3,9 +3,19 @@ Demo of redirecting select results to the network.
 You can use udp/mqtt for the protocol.   
 This project requires a WiFi connection.   
 
+
+This project executes this SQL command at startup.   
+```
+CREATE TABLE test (id INTEGER, datetime);
+INSERT INTO test VALUES (1, '%s');
+```
+
 This project will execute this sql command periodically.   
-```SELECT datetime FROM test where id = 1;```   
-Receive the results via udp/mqtt.
+SELECT results are received via UDP/MQTT.   
+```
+UPDATE test SET datetime = '%s' where id = 1;
+SELECT datetime FROM test where id = 1;
+```
 
 ![Image](https://github.com/user-attachments/assets/3bebd47d-3f92-4f35-81e6-17a8ad89451f)
 
