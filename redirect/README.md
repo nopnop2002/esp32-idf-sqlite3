@@ -5,6 +5,7 @@ This project requires a WiFi connection.
 
 
 This project executes this SQL command at startup.   
+The datetime column will be set to the current date and time.   
 ```
 CREATE TABLE test (id INTEGER, datetime);
 INSERT INTO test VALUES (1, '%s');
