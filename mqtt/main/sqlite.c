@@ -6,7 +6,6 @@
 	software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 	CONDITIONS OF ANY KIND, either express or implied.
 */
-
 #include <stdio.h>
 #include <inttypes.h>
 #include <string.h>
@@ -27,7 +26,7 @@ extern size_t xItemSize;
 static int callback(void *data, int argc, char **argv, char **azColName) {
 	ESP_LOGD(__FUNCTION__, "callback data=%p", data);
 
-	// Initialize replay buffer
+	// Initialize reply buffer
 	memset(data, 0, 1);
 	int data_len = 0;
 
@@ -43,7 +42,7 @@ static int callback(void *data, int argc, char **argv, char **azColName) {
 	printf("\n");
 
 	// Publish reply buffer
-	size_t sended = xMessageBufferSend(xMessageBufferPublish, data, data_len, 100);
+	size_t sended = xMessageBufferSendFromISR(xMessageBufferPublish, data, data_len, NULL);
 	if (sended != data_len) {
 		ESP_LOGE(__FUNCTION__, "xMessageBufferSend fail data_len=%d sended=%d", data_len, sended);
 	}
@@ -89,18 +88,18 @@ void sqlite(void *pvParameters)
 		vTaskDelete(NULL);
 	}
 
-	// Receive subscribe paylaad
+	// Receive subscribe payload
 	char rx_buffer[xItemSize];
-	char errmsg[128];
+	char errmsg[129];
 	while (1) {
-		size_t received = xMessageBufferReceive(xMessageBufferSubscribe, rx_buffer, sizeof(rx_buffer), portMAX_DELAY);
+		size_t received = xMessageBufferReceive(xMessageBufferSubscribe, rx_buffer, sizeof(rx_buffer)-1, portMAX_DELAY);
 		ESP_LOGI(TAG, "xMessageBufferReceive received=%d", received);
 		rx_buffer[received] = 0;
 		ESP_LOGI(TAG, "xMessageBufferReceive rx_buffer=[%s]", rx_buffer);
 
 		// Execute sql 
 		int rc = mqtt_db_exec(db, rx_buffer, errmsg);
-		ESP_LOGI(TAG, "rc=%d", rc);
+		ESP_LOGI(TAG, "mqtt_db_exec rc=%d", rc);
 		if (rc != SQLITE_OK) {
 			int tx_len = strlen(errmsg);
 			size_t sended = xMessageBufferSend(xMessageBufferPublish, errmsg, tx_len, 100);
