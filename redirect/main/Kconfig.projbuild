@@ -52,11 +52,12 @@ menu "Application Configuration"
 				bool "Redirect to UDP"
 			config REDIRECT_TO_MQTT
 				bool "Redirect to MQTT"
+			config REDIRECT_TO_HTTP
+				bool "Redirect to HTTP"
 		endchoice
 
-		if REDIRECT_TO_UDP
-
 		choice UDP_ADDRESS
+			depends on REDIRECT_TO_UDP
 			bool "Select UDP Addrss"
 			default UDP_DIRECTED_BROADCAST
 			help
@@ -72,26 +73,27 @@ menu "Application Configuration"
 		endchoice
 
 		config UDP_MULTICAST_ADDRESS
+			depends on REDIRECT_TO_UDP
 			depends on UDP_MULTICAST
 			string "Multicast address"
 			default "239.255.255.255"
 
 		config UDP_UNICAST_ADDRESS
+			depends on REDIRECT_TO_UDP
 			depends on UDP_UNICAST
 			string "Unicast address"
 			default "192.168.10.20"
 
 		config UDP_SEND_PORT
+			depends on REDIRECT_TO_UDP
 			int "UDP Send Port"
 			range 1024 65535
 			default 8080
 			help
 				Port to send data
-		endif
-
-		if REDIRECT_TO_MQTT
 
 		choice MQTT_TRANSPORT
+			depends on REDIRECT_TO_MQTT
 			prompt "MQTT Transport"
 			default MQTT_TRANSPORT_OVER_TCP
 			help
@@ -115,12 +117,14 @@ menu "Application Configuration"
 		endchoice
 
 		config MQTT_BROKER
+			depends on REDIRECT_TO_MQTT
 			string "MQTT Broker"
 			default "broker.emqx.io"
 			help
 				Host name or IP address of the broker to connect to
 
 		config MQTT_PORT_TCP
+			depends on REDIRECT_TO_MQTT
 			depends on MQTT_TRANSPORT_OVER_TCP
 			int "MQTT Port"
 			range 0 65535
@@ -129,6 +133,7 @@ menu "Application Configuration"
 				Port number of the broker to connect to.
 
 		config MQTT_PORT_SSL
+			depends on REDIRECT_TO_MQTT
 			depends on MQTT_TRANSPORT_OVER_SSL
 			int "MQTT Port"
 			range 0 65535
@@ -137,6 +142,7 @@ menu "Application Configuration"
 				Port number of the broker to connect to.
 
 		config MQTT_PORT_WS
+			depends on REDIRECT_TO_MQTT
 			depends on MQTT_TRANSPORT_OVER_WS
 			int "MQTT Port"
 			range 0 65535
@@ -145,6 +151,7 @@ menu "Application Configuration"
 				Port number of the broker to connect to.
 
 		config MQTT_PORT_WSS
+			depends on REDIRECT_TO_MQTT
 			depends on MQTT_TRANSPORT_OVER_WSS
 			int "MQTT Port"
 			range 0 65535
@@ -152,8 +159,8 @@ menu "Application Configuration"
 			help
 				Port number of the broker to connect to.
 
-
 		choice MQTT_PROTOCOL
+			depends on REDIRECT_TO_MQTT
 			prompt "MQTT Protocol"
 			default MQTT_PROTOCOL_V_3_1_1
 			help
@@ -169,18 +176,21 @@ menu "Application Configuration"
 		endchoice
 
 		config MQTT_PUB_TOPIC
+			depends on REDIRECT_TO_MQTT
 			string "Publish Topic"
 			default "/topic/sqlite"
 			help
 				Topic of publish
 
 		config BROKER_AUTHENTICATION
+			depends on REDIRECT_TO_MQTT
 			bool "Server requests for password when connecting"
 			default false
 			help
 				Server requests for password when connecting.
 
 		config AUTHENTICATION_USERNAME
+			depends on REDIRECT_TO_MQTT
 			depends on BROKER_AUTHENTICATION
 			string "Username used for connecting to the broker"
 			default "user"
@@ -188,13 +198,26 @@ menu "Application Configuration"
 				Username used for connecting to the broker.
 
 		config AUTHENTICATION_PASSWORD
+			depends on REDIRECT_TO_MQTT
 			depends on BROKER_AUTHENTICATION
 			string "Password used for connecting to the broker"
 			default "password"
 			help
 				Username used for connecting to the broker.
 
-		endif
+        config WEB_SERVER_HOST
+			depends on REDIRECT_TO_HTTP
+            string "server to connect to"
+            default "http-server.local"
+            help
+                server to connect to.
+
+        config WEB_SERVER_PORT
+			depends on REDIRECT_TO_HTTP
+            int "port to connect to"
+            default 8080
+            help
+                port to connect to.
 
 	endmenu
 

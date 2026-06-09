@@ -1,8 +1,7 @@
 # Redirect to network
 Demo of redirecting select results to the network.   
-You can use udp/mqtt for the protocol.   
+You can use UDP/MQTT/HTTP for the protocol.   
 This project requires a WiFi connection.   
-
 
 This project executes this SQL command at startup.   
 The datetime column will be set to the current date and time.   
@@ -13,13 +12,13 @@ INSERT INTO test VALUES (1, '%s');
 
 This project will execute this SQL command periodically.   
 The datetime column will be updated with the current date and time.   
-SELECT results are received via UDP/MQTT.   
+SELECT results are received via UDP/MQTT/HTTP.   
 ```
 UPDATE test SET datetime = '%s' where id = 1;
 SELECT datetime FROM test where id = 1;
 ```
 
-![Image](https://github.com/user-attachments/assets/3bebd47d-3f92-4f35-81e6-17a8ad89451f)
+<img width="1280" height="720" alt="Image" src="https://github.com/user-attachments/assets/89b682a7-1658-4277-8559-4e5b81850cad" />
 
 # Changes from the original   
 - Newly created   
@@ -50,14 +49,13 @@ Set the information of network protocol.
 
 
 ### Redirect to UDP
-Set the information of udp protocol.   
+Set the information of your UDP listner.   
 ![Image](https://github.com/user-attachments/assets/17f16f27-7c49-4041-b48d-97cf1da9dcaf)
 
 ESP32 works as a UDP client.   
 Requires a UDP server.   
 I used [this](http://xn--sourceforge-m061am75l.net/projects/sockettest/) application.   
 ![Image](https://github.com/user-attachments/assets/34af570b-ebfc-460e-a0f5-f187e2278053)
-
 
 
 ### Redirect to MQTT
@@ -71,3 +69,14 @@ I used [this](https://mqttx.app/) application.
 
 We can use mosquitto client.   
 ![Image](https://github.com/user-attachments/assets/ed10714a-6f91-4a1a-aa7a-51b4893de276)
+
+
+### Redirect to HTTP
+Set the information of your HTTP server.   
+<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/9d91e5a4-88b9-4a1d-b6a4-a9a2c52873bc" />
+
+ESP32 works as a HTTP client.   
+We can use `http.server.py`.   
+<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/910baf40-2adc-44b2-bb8f-4edae9368b97" />
+
+

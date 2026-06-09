@@ -1,6 +1,10 @@
 /*
-	This example creates one databases on SPIFFS,
-	Query whether a table and record exist.
+	sqlite for esp-idf
+
+	This example code is in the Public Domain (or CC0 licensed, at your option.)
+	Unless required by applicable law or agreed to in writing, this
+	software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+	CONDITIONS OF ANY KIND, either express or implied.
 */
 #include <stdio.h>
 #include <sys/unistd.h>
@@ -17,10 +21,9 @@
 
 static const char *TAG = "SQL";
 
-extern MessageBufferHandle_t xMessageBufferQuery;
 extern MessageBufferHandle_t xMessageBufferRedirect;
 
-static int callback(void *data, int argc, char **argv, char **azColName) {
+static int callback_redirect(void *data, int argc, char **argv, char **azColName) {
 	MessageBufferHandle_t *xMessageBuffer = (MessageBufferHandle_t *)data;
 	ESP_LOGD(__FUNCTION__, "data=[%p] xMessageBuffer=[%p]", data, xMessageBuffer);
 	int i;
@@ -32,21 +35,21 @@ static int callback(void *data, int argc, char **argv, char **azColName) {
 			size_t sended = xMessageBufferSendFromISR((MessageBufferHandle_t)xMessageBuffer, tx_buffer, tx_length, NULL);
 			ESP_LOGD(__FUNCTION__, "sended=%d tx_length=%d", sended, tx_length);
 			if (sended != tx_length) {
-				ESP_LOGE(pcTaskGetName(NULL), "xMessageBufferSendFromISR fail tx_length=%d sended=%d", tx_length, sended);
+				ESP_LOGE(__FUNCTION__, "xMessageBufferSendFromISR fail tx_length=%d sended=%d", tx_length, sended);
 			}
 		} else {
-			ESP_LOGE(pcTaskGetName(NULL), "xMessageBuffer is NULL");
+			ESP_LOGE(__FUNCTION__, "xMessageBuffer is NULL");
 		}
 	}
 	//printf("\n");
 	return 0;
 }
 
-int db_query(MessageBufferHandle_t xMessageBuffer, sqlite3 *db, const char *sql) {
+int db_redirect(MessageBufferHandle_t xMessageBuffer, sqlite3 *db, const char *sql) {
 	ESP_LOGD(__FUNCTION__, "xMessageBuffer=[%p]", xMessageBuffer);
 	char *zErrMsg = 0;
 	printf("%s\n", sql);
-	int rc = sqlite3_exec(db, sql, callback, xMessageBuffer, &zErrMsg);
+	int rc = sqlite3_exec(db, sql, callback_redirect, xMessageBuffer, &zErrMsg);
 	if (rc != SQLITE_OK) {
 		printf("SQL error: %s\n", zErrMsg);
 		sqlite3_free(zErrMsg);
@@ -60,57 +63,50 @@ void sqlite(void *pvParameters) {
 	char *base_path = (char *)pvParameters;
 	ESP_LOGI(TAG, "Start base_path=[%s]", base_path);
 
-	// Open database
+	// Remove database
 	char db_name[32];
 	snprintf(db_name, sizeof(db_name)-1, "%s/test.db", base_path);
+	unlink(db_name);
+
+	// Open database
 	sqlite3 *db;
 	sqlite3_initialize();
-	if (db_open(db_name, &db)) vTaskDelete(NULL);
-
-	// Inquiry
-	int rc = db_query(xMessageBufferQuery, db, "select count(*) from sqlite_master where name = 'test';");
-	if (rc != SQLITE_OK) vTaskDelete(NULL);
-
-	// Read reply
-	char sqlmsg[256];
-	size_t readBytes;
-	readBytes = xMessageBufferReceive(xMessageBufferQuery, sqlmsg, sizeof(sqlmsg), 100);
-	ESP_LOGI(pcTaskGetName(NULL), "readBytes=%d", readBytes);
-	if (readBytes == 0) vTaskDelete(NULL);
-	sqlmsg[readBytes] = 0;
-	ESP_LOGI(pcTaskGetName(NULL), "sqlmsg=[%s]", sqlmsg);
+	if (db_open(db_name, &db)) {
+		ESP_LOGE(TAG, "DB Open fail");
+		vTaskDelete(NULL);
+	}
 
 	// Create table
-	if (strcmp(sqlmsg, "count(*) = 0") == 0) {
-		int rc = db_query(xMessageBufferQuery, db, "CREATE TABLE test (id INTEGER, datetime);");
-		if (rc != SQLITE_OK) vTaskDelete(NULL);
-		ESP_LOGW(pcTaskGetName(NULL), "Table created");
+	int rc = db_exec(db, "CREATE TABLE test (id INTEGER, datetime);");
+	if (rc != SQLITE_OK) {
+		ESP_LOGE(TAG, "CREATE TABLE fail");
+		vTaskDelete(NULL);
+	}
 
-		// get local current time
-		time_t now;
-		struct tm timeinfo;
-		time(&now);
-		now = now + (CONFIG_LOCAL_TIMEZONE*60*60);
-		localtime_r(&now, &timeinfo);
-		char time_buf[64];
-		strftime(time_buf, sizeof(time_buf), "%c", &timeinfo);
+	// Get local current time
+	time_t now;
+	struct tm timeinfo;
+	time(&now);
+	now = now + (CONFIG_LOCAL_TIMEZONE*60*60);
+	localtime_r(&now, &timeinfo);
+	char time_buf[64];
+	strftime(time_buf, sizeof(time_buf), "%c", &timeinfo);
 
-		// insert new record
-		char sql_buf[128];
-		sprintf(sql_buf, "INSERT INTO test VALUES (1, '%s');", time_buf);
-		ESP_LOGI(TAG, "sql_buf=[%s]", sql_buf);
-		rc = db_query(xMessageBufferQuery, db, sql_buf);
-		if (rc != SQLITE_OK) vTaskDelete(NULL);
-		ESP_LOGW(pcTaskGetName(NULL), "Record inserted");
-	} else {
-		ESP_LOGW(pcTaskGetName(NULL), "Table already exists");
+	// Insert new record
+	char sql_buf[128];
+	sprintf(sql_buf, "INSERT INTO test VALUES (1, '%s');", time_buf);
+	ESP_LOGI(TAG, "sql_buf=[%s]", sql_buf);
+	rc = db_exec(db, sql_buf);
+	if (rc != SQLITE_OK) {
+		ESP_LOGE(TAG, "INSERT INTO fail");
+		vTaskDelete(NULL);
 	}
 
 	while(1) {
 		ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
-		ESP_LOGI(pcTaskGetName(NULL), "ulTaskNotifyTake");
+		ESP_LOGI(TAG, "ulTaskNotifyTake");
 
-		// get local current time
+		// Get local current time
 		time_t now;
 		struct tm timeinfo;
 		time(&now);
@@ -120,36 +116,47 @@ void sqlite(void *pvParameters) {
 		strftime(time_buf, sizeof(time_buf), "%c", &timeinfo);
 		ESP_LOGI(TAG, "time_buf=[%s]", time_buf);
 
-		// update record
-		char sql_buf[128];
+		// Update record
 		sprintf(sql_buf, "UPDATE test SET datetime = '%s' where id = 1;", time_buf);
 		ESP_LOGI(TAG, "sql_buf=[%s]", sql_buf);
-		rc = db_query(xMessageBufferQuery, db, sql_buf);
-		if (rc != SQLITE_OK) vTaskDelete(NULL);
-		ESP_LOGW(pcTaskGetName(NULL), "Record updated");
-
-		// query record
-		strcpy(sql_buf, "SELECT datetime FROM test where id = 1;");
-		rc = db_query(xMessageBufferQuery, db, sql_buf);
-		if (rc != SQLITE_OK) vTaskDelete(NULL);
-		while (1) {
-			readBytes = xMessageBufferReceive(xMessageBufferQuery, sqlmsg, sizeof(sqlmsg), 100);
-			ESP_LOGD(pcTaskGetName(NULL), "readBytes=%d", readBytes);
-			if (readBytes == 0) break;
-			sqlmsg[readBytes] = 0;
-			ESP_LOGI(pcTaskGetName(NULL), "sqlmsg=[%s]", sqlmsg);
+		rc = db_exec(db, sql_buf);
+		if (rc != SQLITE_OK) {
+			ESP_LOGE(TAG, "UPDATE fail");
+			vTaskDelete(NULL);
 		}
 
-		// redirect
+		// Query record
+		strcpy(sql_buf, "SELECT datetime FROM test where id = 1;");
+		rc = db_exec( db, sql_buf);
+		if (rc != SQLITE_OK) {
+			ESP_LOGE(TAG, "SELECT fail");
+			vTaskDelete(NULL);
+		}
+
+		// Redirect
 #if CONFIG_REDIRECT_TO_UDP
-		ESP_LOGW(pcTaskGetName(NULL), "Redirect to UDP");
-		rc = db_query(xMessageBufferRedirect, db, sql_buf);
-		if (rc != SQLITE_OK) vTaskDelete(NULL);
+		ESP_LOGW(TAG, "Redirect to UDP");
+		rc = db_redirect(xMessageBufferRedirect, db, sql_buf);
+		if (rc != SQLITE_OK) {
+			ESP_LOGE(TAG, "db_redirect fail");
+			vTaskDelete(NULL);
+		}
 #endif
 #if CONFIG_REDIRECT_TO_MQTT
-		ESP_LOGW(pcTaskGetName(NULL), "Redirect to MQTT");
-		rc = db_query(xMessageBufferRedirect, db, sql_buf);
-		if (rc != SQLITE_OK) vTaskDelete(NULL);
+		ESP_LOGW(TAG, "Redirect to MQTT");
+		rc = db_redirect(xMessageBufferRedirect, db, sql_buf);
+		if (rc != SQLITE_OK) {
+			ESP_LOGE(TAG, "db_redirect fail");
+			vTaskDelete(NULL);
+		}
+#endif
+#if CONFIG_REDIRECT_TO_HTTP
+		ESP_LOGW(TAG, "Redirect to HTTP");
+		rc = db_redirect(xMessageBufferRedirect, db, sql_buf);
+		if (rc != SQLITE_OK) {
+			ESP_LOGE(TAG, "db_redirect fail");
+			vTaskDelete(NULL);
+		}
 #endif
 	} // end while
 

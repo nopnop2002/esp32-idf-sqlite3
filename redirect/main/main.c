@@ -35,7 +35,6 @@ static EventGroupHandle_t s_wifi_event_group;
 
 static const char *TAG = "MAIN";
 
-MessageBufferHandle_t xMessageBufferQuery;
 MessageBufferHandle_t xMessageBufferRedirect;
 
 // The total number of bytes (not messages) the message buffer will be able to hold at any one time.
@@ -271,9 +270,10 @@ static void timerCallback(TimerHandle_t xTimer)
 void sqlite(void *pvParameters);
 #if CONFIG_REDIRECT_TO_UDP
 void udp_client(void *pvParameters);
-#endif
-#if CONFIG_REDIRECT_TO_MQTT
+#elif CONFIG_REDIRECT_TO_MQTT
 void mqtt_pub(void *pvParameters);
+#elif CONFIG_REDIRECT_TO_HTTP
+void http_client(void *pvParameters);
 #endif
 
 void app_main() {
@@ -299,8 +299,6 @@ void app_main() {
 	ESP_ERROR_CHECK(obtain_time());
 
 	// Create Message Buffer
-	xMessageBufferQuery = xMessageBufferCreate(xBufferSizeBytes);
-	configASSERT( xMessageBufferQuery );
 	xMessageBufferRedirect = xMessageBufferCreate(xBufferSizeBytes);
 	configASSERT( xMessageBufferRedirect );
 
@@ -311,11 +309,12 @@ void app_main() {
 #if CONFIG_REDIRECT_TO_UDP
 	// Start udp client task
 	xTaskCreate(udp_client, "UDP", 1024*4, NULL, 5, NULL);
-#endif
-
-#if CONFIG_REDIRECT_TO_MQTT
+#elif CONFIG_REDIRECT_TO_MQTT
 	// Start mqtt publish task
 	xTaskCreate(mqtt_pub, "MQTT", 1024*4, NULL, 5, NULL);
+#elif CONFIG_REDIRECT_TO_HTTP
+	// Start http client task
+	xTaskCreate(http_client, "HTTP", 1024*4, NULL, 5, NULL);
 #endif
 
 	// Create Timer
