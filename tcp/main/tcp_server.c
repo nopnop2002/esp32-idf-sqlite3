@@ -103,7 +103,7 @@ void tcp_server(void *pvParameters)
 		ESP_LOGE(pcTaskGetName(NULL), "Socket unable to bind: errno %d", errno);
 		return;
 	}
-	ESP_LOGI(pcTaskGetName(NULL), "Socket bound, port %d", CONFIG_TCP_PORT);
+	ESP_LOGI(pcTaskGetName(NULL), "Socket bind, port %d", CONFIG_TCP_PORT);
 
 	err = listen(listen_sock, 1);
 	if (err != 0) {
@@ -172,20 +172,18 @@ void tcp_server(void *pvParameters)
 				char *pos = strstr(rx_buffer, str);
 				if (pos != NULL) {
 					len = pos - &rx_buffer[0];
-					ESP_LOGD(pcTaskGetName(NULL), "pos=%p %d", pos, len);
+					ESP_LOGI(pcTaskGetName(NULL), "pos=%p %d", pos, len);
 				}
 				rx_buffer[len] = 0;
-				ESP_LOGI(pcTaskGetName(NULL), "[%.*s]", len, rx_buffer);
+				ESP_LOGD(pcTaskGetName(NULL), "[%.*s]", len, rx_buffer);
 				ESP_LOGI(pcTaskGetName(NULL), "[%s]", rx_buffer);
 
 				// Execute sql 
-				char tx_buffer[128];
 				char errmsg[128];
 				int rc = tcp_db_exec(sock, db, rx_buffer, errmsg);
-				ESP_LOGI(pcTaskGetName(NULL), "rc=%d", rc);
+				ESP_LOGI(pcTaskGetName(NULL), "tcp_db_exec rc=%d", rc);
 				if (rc != SQLITE_OK) {
-					strcpy(tx_buffer, errmsg);
-					int err = send(sock, tx_buffer, strlen(tx_buffer), 0);
+					int err = send(sock, errmsg, strlen(errmsg), 0);
 					if (err < 0) {
 						ESP_LOGE(pcTaskGetName(NULL), "Error occurred during sending: errno %d", errno);
 						break;
