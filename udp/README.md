@@ -3,7 +3,7 @@ Demo of using sqlite3 over UDP.
 This project requires a WiFi connection.   
 You can execure SQL commands using udp software.   
 
-![Image](https://github.com/user-attachments/assets/9e03a3a0-c163-46a2-893c-03e0526c5a48)
+<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/dab4715e-d0eb-4530-bc95-f8d4866170b0" />
 
 # Changes from the original   
 - Newly created   
