@@ -82,4 +82,6 @@ ESP32 works as a HTTP client.
 We can use `http.server.py`.   
 <img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/910baf40-2adc-44b2-bb8f-4edae9368b97" />
 
+We can use netcat as HTTP server.   
+<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/a92c3fd6-109a-4dd9-b5ce-88f0d43da87a" />
 
