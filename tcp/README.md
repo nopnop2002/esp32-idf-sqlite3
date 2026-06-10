@@ -84,3 +84,9 @@ Press the Disconnect button.
 ![Image](https://github.com/user-attachments/assets/ebbc75fb-2c3d-417c-a64b-244852abf9e2)
 ![Image](https://github.com/user-attachments/assets/15004821-dab7-4b13-9b3b-196c8d1301b7)
 
+# Using netcat   
+We can use netcat as TCP client.   
+```
+echo "select * from test1;" | nc 192.168.0.131 9876 -w 1
+```
+<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/d143e9e5-ef9e-4f6d-9026-8a699f46cc12" />
