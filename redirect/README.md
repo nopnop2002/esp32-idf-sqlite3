@@ -59,7 +59,10 @@ I used [this](http://xn--sourceforge-m061am75l.net/projects/sockettest/) applica
 
 We can use netcat as UDP server.   
 The `nc` command does not have a timeout setting for listening, so we wrap it with the `timeout` command.   
-<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/996e48a9-99c1-4cb7-9de2-c45fe1192f71" />
+```
+while true; do timeout 5s nc -luk -p 8080; echo ''; done
+```
+<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/89eeec59-9f5e-463d-b1bf-989a2d5b368f" />
 
 ### Redirect to MQTT
 Set the information of your MQTT broker.   
@@ -83,5 +86,8 @@ We can use `http.server.py`.
 <img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/910baf40-2adc-44b2-bb8f-4edae9368b97" />
 
 We can use netcat as HTTP server.   
+```
+while true; do printf "HTTP/1.1 200 OK\r\n\r\n" | nc -l -p 8080; done
+```
 <img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/a92c3fd6-109a-4dd9-b5ce-88f0d43da87a" />
 
