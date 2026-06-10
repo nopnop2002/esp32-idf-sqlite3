@@ -80,6 +80,7 @@ I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't
 # Using netcat   
 We can use netcat as UDP client.   
 ```
-echo "select * from test1;" | nc -u 192.168.0.131 9876 -w 1 | sed -e 's/id/\nid/g'; echo
+echo "select * from test1;" | nc -u 192.168.0.131 9876 -w 1 | sed -e 's/id/\nid/g' | sed -e 's/content/ content/g'; echo
 ```
-<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/5a3c1e06-0575-4683-93b8-f61da4148b2d" />
+<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/e159a066-cb64-4d46-96d7-e1e790fa2b75" />
+
