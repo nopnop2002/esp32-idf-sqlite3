@@ -57,6 +57,9 @@ Requires a UDP server.
 I used [this](http://xn--sourceforge-m061am75l.net/projects/sockettest/) application.   
 ![Image](https://github.com/user-attachments/assets/34af570b-ebfc-460e-a0f5-f187e2278053)
 
+We can use netcat as UDP server.   
+The `nc` command does not have a timeout setting for listening, so we wrap it with the `timeout` command.   
+<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/996e48a9-99c1-4cb7-9de2-c45fe1192f71" />
 
 ### Redirect to MQTT
 Set the information of your MQTT broker.   
