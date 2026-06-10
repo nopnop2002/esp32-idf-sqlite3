@@ -39,7 +39,7 @@ I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't
 
 - Connect udp server   
 	Specify the IP address and port number of the ESP32.   
-	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/86c369e6-9ab0-4e83-b88d-2c6ca9cd3a9c" />
+	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/86c369e6-9ab0-4e83-b88d-2c6ca9cd3a9c" />   
 	Some applications allow you to connect using an mDNS hostname.   
 	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/4c9e9fe1-b6d7-49bf-8302-0da9f196b2a7" />
 
