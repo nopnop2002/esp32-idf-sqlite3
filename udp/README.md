@@ -70,11 +70,11 @@ I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't
 	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/cf4bcb0a-6b32-40f8-a80f-9d2167c69273" />
 
 - Delete table   
-Type "drop table test1;" and send.   
-<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/d19d01ed-c988-43e2-be0f-47afc31a32d8" />
+	Type "drop table test1;" and send.   
+	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/d19d01ed-c988-43e2-be0f-47afc31a32d8" />
 
 - Error notification   
-<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/8cc267dc-3591-4b6c-9360-2b8ec462433b" />
+	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/8cc267dc-3591-4b6c-9360-2b8ec462433b" />
 
 
 # Using netcat   
