@@ -57,7 +57,7 @@ Requires a UDP server.
 I used [this](http://xn--sourceforge-m061am75l.net/projects/sockettest/) application.   
 ![Image](https://github.com/user-attachments/assets/34af570b-ebfc-460e-a0f5-f187e2278053)
 
-We can use netcat as UDP server.   
+We can use netcat as a UDP server.   
 ```
 while true;do nc -ul -p 8080 -w 0; echo ''; done
 ```
@@ -84,7 +84,7 @@ ESP32 works as a HTTP client.
 We can use `http.server.py`.   
 <img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/910baf40-2adc-44b2-bb8f-4edae9368b97" />
 
-We can use netcat as HTTP server.   
+We can use netcat as a HTTP server.   
 ```
 while true; do printf "HTTP/1.1 200 OK\r\n\r\n" | nc -l -p 8080; done
 ```
