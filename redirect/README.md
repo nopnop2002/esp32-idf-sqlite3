@@ -58,11 +58,10 @@ I used [this](http://xn--sourceforge-m061am75l.net/projects/sockettest/) applica
 ![Image](https://github.com/user-attachments/assets/34af570b-ebfc-460e-a0f5-f187e2278053)
 
 We can use netcat as UDP server.   
-The `nc` command does not have a timeout setting for listening, so we wrap it with the `timeout` command.   
 ```
-while true; do timeout 5s nc -luk -p 8080; echo ''; done
+while true;do nc -ul -p 8080 -w 0; echo ''; done
 ```
-<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/89eeec59-9f5e-463d-b1bf-989a2d5b368f" />
+<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/e346c141-80a2-46df-a5d9-0365823c3334" />
 
 ### Redirect to MQTT
 Set the information of your MQTT broker.   
