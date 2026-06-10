@@ -44,12 +44,12 @@ I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't
 	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/4c9e9fe1-b6d7-49bf-8302-0da9f196b2a7" />
 
 - Create table   
-Type "CREATE TABLE test1 (id INTEGER, content);" and send.   
-<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/6da8b74f-9348-4f0d-995f-8af18a757f03" />
+	Type "CREATE TABLE test1 (id INTEGER, content);" and send.   
+	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/6da8b74f-9348-4f0d-995f-8af18a757f03" />
 
 - Get list of tables   
-Type "select name from sqlite_master where type='table';" and send.   
-<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/93a3329e-3ec5-491a-87b2-678f54a58ea2" />
+	Type "select name from sqlite_master where type='table';" and send.   
+	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/93a3329e-3ec5-491a-87b2-678f54a58ea2" />
 
 - Get table schema (structure)   
 Type "select * from sqlite_master;" and send.   
