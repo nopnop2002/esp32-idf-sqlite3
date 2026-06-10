@@ -52,14 +52,14 @@ I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't
 	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/93a3329e-3ec5-491a-87b2-678f54a58ea2" />
 
 - Get table schema (structure)   
-Type "select * from sqlite_master;" and send.   
-<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/ab1b60c3-0220-413f-b909-ad5fc5827125" />
+	Type "select * from sqlite_master;" and send.   
+	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/ab1b60c3-0220-413f-b909-ad5fc5827125" />
 
 - Insert data   
-Type "INSERT INTO test1 VALUES (1, 'Hello, World from test1');" and send.   
-Type "INSERT INTO test1 VALUES (2, 'Goodbye, World from test1');" and send.   
-<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/1b663b7c-33f4-40ea-9ea8-5320b1c8a2ad" />
-<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/79490a6f-93a7-473f-8cb7-a33b61ddebab" />
+	Type "INSERT INTO test1 VALUES (1, 'Hello, World from test1');" and send.   
+	Type "INSERT INTO test1 VALUES (2, 'Goodbye, World from test1');" and send.   
+	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/1b663b7c-33f4-40ea-9ea8-5320b1c8a2ad" />
+	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/79490a6f-93a7-473f-8cb7-a33b61ddebab" />
 
 - Fetch data   
 Type "select * from test1;" and send.   
