@@ -79,6 +79,9 @@ I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't
 
 # Using netcat   
 We can use netcat as UDP client.   
+<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/d4ae42b7-f929-42df-a224-6fb550b5435f" />
+
+I used sed to format the output.   
 ```
 echo "select * from test1;" | nc -u 192.168.0.131 9876 -w 1 | sed -e 's/id/\nid/g' | sed -e 's/content/ content/g'; echo
 ```
