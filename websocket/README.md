@@ -49,10 +49,6 @@ Type "select name from sqlite_master where type='table';" and send.
 Type "select * from sqlite_master;" and send.   
 ![Image](https://github.com/user-attachments/assets/5d8e67ed-2529-4521-b69f-0a6aba227e3e)
 
-- Delete table   
-Type "drop table test1;" and send.   
-![Image](https://github.com/user-attachments/assets/a50bbe7e-7ca8-4869-b751-4d292e62cdff)
-
 - Insert data   
 Type "INSERT INTO test1 VALUES (1, 'Hello, World from test1');" and send.   
 Type "INSERT INTO test1 VALUES (2, 'Goodbye, World from test1');" and send.   
@@ -66,6 +62,10 @@ Type "select * from test1;" and send.
 - Delete data   
 Type "delete from test1 where id = 1;" and send.   
 ![Image](https://github.com/user-attachments/assets/8c501f3a-318a-4ae5-a0a0-ba2100e05905)
+
+- Delete table   
+Type "drop table test1;" and send.   
+![Image](https://github.com/user-attachments/assets/a50bbe7e-7ca8-4869-b751-4d292e62cdff)
 
 - Error notification   
 ![Image](https://github.com/user-attachments/assets/498b307b-d0d8-4cab-8913-e0dd0e7e1520)
