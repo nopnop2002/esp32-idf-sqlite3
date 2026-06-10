@@ -38,43 +38,43 @@ I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't
 
 
 - Connect udp server   
-	Specify the IP address and port number of the ESP32.   
-	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/86c369e6-9ab0-4e83-b88d-2c6ca9cd3a9c" />   
-	Some applications allow you to connect using an mDNS hostname.   
-	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/4c9e9fe1-b6d7-49bf-8302-0da9f196b2a7" />
+Specify the IP address and port number of the ESP32.   
+<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/86c369e6-9ab0-4e83-b88d-2c6ca9cd3a9c" />   
+Some applications allow you to connect using an mDNS hostname.   
+<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/4c9e9fe1-b6d7-49bf-8302-0da9f196b2a7" />
 
 - Create table   
-	Type "CREATE TABLE test1 (id INTEGER, content);" and send.   
-	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/6da8b74f-9348-4f0d-995f-8af18a757f03" />
+Type "CREATE TABLE test1 (id INTEGER, content);" and send.   
+<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/6da8b74f-9348-4f0d-995f-8af18a757f03" />
 
 - Get list of tables   
-	Type "select name from sqlite_master where type='table';" and send.   
-	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/93a3329e-3ec5-491a-87b2-678f54a58ea2" />
+Type "select name from sqlite_master where type='table';" and send.   
+<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/93a3329e-3ec5-491a-87b2-678f54a58ea2" />
 
 - Get table schema (structure)   
-	Type "select * from sqlite_master;" and send.   
-	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/ab1b60c3-0220-413f-b909-ad5fc5827125" />
+Type "select * from sqlite_master;" and send.   
+<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/ab1b60c3-0220-413f-b909-ad5fc5827125" />
 
 - Insert data   
-	Type "INSERT INTO test1 VALUES (1, 'Hello, World from test1');" and send.   
-	Type "INSERT INTO test1 VALUES (2, 'Goodbye, World from test1');" and send.   
-	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/1b663b7c-33f4-40ea-9ea8-5320b1c8a2ad" />
-	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/79490a6f-93a7-473f-8cb7-a33b61ddebab" />
+Type "INSERT INTO test1 VALUES (1, 'Hello, World from test1');" and send.   
+Type "INSERT INTO test1 VALUES (2, 'Goodbye, World from test1');" and send.   
+<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/1b663b7c-33f4-40ea-9ea8-5320b1c8a2ad" />
+<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/79490a6f-93a7-473f-8cb7-a33b61ddebab" />
 
 - Fetch data   
-	Type "select * from test1;" and send.   
-	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/dab4715e-d0eb-4530-bc95-f8d4866170b0" />
+Type "select * from test1;" and send.   
+<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/dab4715e-d0eb-4530-bc95-f8d4866170b0" />
 
 - Delete data   
-	Type "delete from test1 where id = 1;" and send.   
-	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/cf4bcb0a-6b32-40f8-a80f-9d2167c69273" />
+Type "delete from test1 where id = 1;" and send.   
+<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/cf4bcb0a-6b32-40f8-a80f-9d2167c69273" />
 
 - Delete table   
-	Type "drop table test1;" and send.   
-	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/d19d01ed-c988-43e2-be0f-47afc31a32d8" />
+Type "drop table test1;" and send.   
+<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/d19d01ed-c988-43e2-be0f-47afc31a32d8" />
 
 - Error notification   
-	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/8cc267dc-3591-4b6c-9360-2b8ec462433b" />
+<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/8cc267dc-3591-4b6c-9360-2b8ec462433b" />
 
 
 # Using netcat   
