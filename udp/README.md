@@ -62,12 +62,12 @@ I searched for a GUI tool that can be used with ubuntu or debian, but I couldn't
 	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/79490a6f-93a7-473f-8cb7-a33b61ddebab" />
 
 - Fetch data   
-Type "select * from test1;" and send.   
-<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/dab4715e-d0eb-4530-bc95-f8d4866170b0" />
+	Type "select * from test1;" and send.   
+	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/dab4715e-d0eb-4530-bc95-f8d4866170b0" />
 
 - Delete data   
-Type "delete from test1 where id = 1;" and send.   
-<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/cf4bcb0a-6b32-40f8-a80f-9d2167c69273" />
+	Type "delete from test1 where id = 1;" and send.   
+	<img width="586" height="493" alt="Image" src="https://github.com/user-attachments/assets/cf4bcb0a-6b32-40f8-a80f-9d2167c69273" />
 
 - Delete table   
 Type "drop table test1;" and send.   
